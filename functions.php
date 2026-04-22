@@ -24,9 +24,55 @@ add_action( 'wp', function () {
         'vet-independence-ky'   => 'template-vet-independence-ky.php',
         'vet-near-cincinnati'   => 'template-vet-cincinnati.php',
         'vet-cincinnati'        => 'template-vet-cincinnati.php',
+        'patient-portal-online-booking' => 'template-patient-portal-online-booking.php',
+        'online-vet-pharmacy-northern-kentucky-cincinnati' => 'template-online-vet-pharmacy.php',
     ];
     if ( isset( $implicit[ $post->post_name ] ) && ( ! $stored || $stored === 'default' ) ) {
         update_post_meta( $post->ID, '_wp_page_template', $implicit[ $post->post_name ] );
+    }
+} );
+
+// Ensure dedicated SEO landing pages for portal/booking and online pharmacy exist.
+add_action( 'init', function () {
+    if ( ! function_exists( 'wp_insert_post' ) ) {
+        return;
+    }
+
+    $pages = [
+        [
+            'title'    => 'Patient Portal & Online Booking | Northern Kentucky & Cincinnati',
+            'slug'     => 'patient-portal-online-booking',
+            'template' => 'template-patient-portal-online-booking.php',
+            'content'  => '<p>Use this patient portal and online booking page to securely sign in and request care with Veterinary Medical Center.</p>',
+        ],
+        [
+            'title'    => 'Northern Kentucky & Cincinnati Online Vet Pharmacy',
+            'slug'     => 'online-vet-pharmacy-northern-kentucky-cincinnati',
+            'template' => 'template-online-vet-pharmacy.php',
+            'content'  => '<p>Use our online vet pharmacy page to request refills and browse eligible products from a trusted veterinary source.</p>',
+        ],
+    ];
+
+    foreach ( $pages as $page ) {
+        $existing = get_page_by_path( $page['slug'], OBJECT, 'page' );
+        if ( $existing ) {
+            if ( get_post_meta( $existing->ID, '_wp_page_template', true ) !== $page['template'] ) {
+                update_post_meta( $existing->ID, '_wp_page_template', $page['template'] );
+            }
+            continue;
+        }
+
+        $page_id = wp_insert_post( [
+            'post_title'   => $page['title'],
+            'post_name'    => $page['slug'],
+            'post_content' => $page['content'],
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ] );
+
+        if ( $page_id && ! is_wp_error( $page_id ) ) {
+            update_post_meta( $page_id, '_wp_page_template', $page['template'] );
+        }
     }
 } );
 
@@ -820,6 +866,16 @@ function vmc_phone_link( $key = 'ft' ) {
         : vmc_get( 'vmc_ind_phone_raw', '8593562242' );
 
     return 'tel:' . preg_replace( '/[^0-9]/', '', $raw );
+}
+
+function vmc_patient_portal_page_url() {
+    $page = get_page_by_path( 'patient-portal-online-booking' );
+    return $page ? get_permalink( $page ) : home_url( '/patient-portal-online-booking/' );
+}
+
+function vmc_online_pharmacy_page_url() {
+    $page = get_page_by_path( 'online-vet-pharmacy-northern-kentucky-cincinnati' );
+    return $page ? get_permalink( $page ) : home_url( '/online-vet-pharmacy-northern-kentucky-cincinnati/' );
 }
 
 function vmc_get_hero_image_url() {

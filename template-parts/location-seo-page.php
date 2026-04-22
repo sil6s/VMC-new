@@ -149,6 +149,14 @@ $location_pages = [
 
 $page = $location_pages[ $vmc_location_page ];
 $map_location_label = $page['template'] === 'cincinnati' ? 'Fort Thomas' : str_replace( '_', ' ', $vmc_location_page );
+$primary_cta = get_field( 'loc_primary_button' ) ?: 'Request Appointment';
+$secondary_cta = get_field( 'loc_secondary_button' ) ?: 'Get Directions';
+$intro_eyebrow = get_field( 'loc_intro_eyebrow' ) ?: 'Local Veterinary Care';
+$intro_heading = get_field( 'loc_intro_heading' ) ?: 'A local page built for real pet owner decisions.';
+$intro_body = get_field( 'loc_intro_body' ) ?: 'Use this page to compare options, review services, and choose the next step with a locally owned team.';
+$quick_body = get_field( 'loc_quick_body' ) ?: 'Use these links for fast scheduling, preparation, and follow-up.';
+$resource_heading = get_field( 'loc_resource_heading' ) ?: 'Helpful resources for new and returning patients.';
+$resource_body = get_field( 'loc_resource_body' ) ?: 'If you are comparing clinics, these pages make it easier to move from research to action.';
 
 get_header();
 ?>
@@ -215,8 +223,8 @@ get_header();
       <h1 class="hero-h1"><?php echo esc_html( get_field( 'loc_hero_heading' ) ?: $page['h1'] ); ?></h1>
       <p class="hero-body"><?php echo esc_html( get_field( 'loc_hero_body' ) ?: $page['intro'] ); ?></p>
       <div class="loc-actions">
-        <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-hero')">Request Appointment</button>
-        <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration</a>
+        <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-hero')"><?php echo esc_html( $primary_cta ); ?></button>
+        <a class="btn-ghost" href="#directions"><?php echo esc_html( $secondary_cta ); ?></a>
       </div>
     </div>
     <aside class="loc-hero-side">
@@ -226,13 +234,25 @@ get_header();
         <ul class="loc-list">
           <li><a href="tel:<?php echo esc_attr( $page['phone_href'] ); ?>"><?php echo esc_html( $page['phone'] ); ?></a></li>
           <li><a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Complete New Patient Registration</a></li>
-          <li><button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-panel')">Request Appointment</button></li>
+          <li><button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-panel')"><?php echo esc_html( $primary_cta ); ?></button></li>
         </ul>
       </div>
     </aside>
   </section>
 
   <section class="loc-sec loc-sec-white">
+    <div class="loc-wrap rv">
+      <div class="sec-eye"><span class="sec-lbl"><?php echo esc_html( $intro_eyebrow ); ?></span><span class="sec-rule"></span></div>
+      <h2 class="sec-h2"><?php echo esc_html( $intro_heading ); ?></h2>
+      <p class="loc-copy"><?php echo esc_html( $intro_body ); ?></p>
+      <div class="loc-actions">
+        <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration</a>
+        <a class="btn-ghost" href="<?php echo esc_url( vmc_patient_portal_page_url() ); ?>">Patient Portal &amp; Booking</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-sec loc-sec-white" style="padding-top:0">
     <div class="loc-wrap rv">
       <div class="sec-eye"><span class="sec-lbl">Why Choose Us</span><span class="sec-rule"></span></div>
       <h2 class="sec-h2"><?php echo esc_html( $page['keyword'] ); ?> care with local ownership and real continuity.</h2>
@@ -302,14 +322,20 @@ get_header();
               <div><strong>Phone</strong><a href="tel:<?php echo esc_attr( $page['phone_href'] ); ?>"><?php echo esc_html( $page['phone'] ); ?></a></div>
               <div><strong>Directions</strong><a href="https://maps.google.com/?q=<?php echo esc_attr( $page['map_query'] ); ?>" target="_blank" rel="noopener">Get Directions</a></div>
             </div>
+            <div class="loc-actions">
+              <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-map-primary')"><?php echo esc_html( $primary_cta ); ?></button>
+              <a class="btn-ghost" href="https://maps.google.com/?q=<?php echo esc_attr( $page['map_query'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $secondary_cta ); ?></a>
+            </div>
           </div>
         </article>
         <article class="loc-card">
-          <h3>Ready for your first visit?</h3>
+          <h3><?php echo esc_html( $resource_heading ); ?></h3>
+          <p><?php echo esc_html( $resource_body ); ?></p>
+          <p><?php echo esc_html( $quick_body ); ?></p>
           <p>Use the <a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">new patient registration form</a> before your appointment, <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">contact our team</a> with questions, browse the <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">VMC blog</a>, or compare broader local search guidance on our <a href="<?php echo esc_url( home_url( '/northern-kentucky-vet-near-me/' ) ); ?>">Northern Kentucky vet near me page</a>.</p>
           <div class="loc-actions">
             <a class="btn-ghost" href="https://www.avma.org/resources-tools/pet-owners" target="_blank" rel="noopener">AVMA Pet Owner Resources</a>
-            <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-map')">Book Appointment</button>
+            <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-map')"><?php echo esc_html( $primary_cta ); ?></button>
           </div>
         </article>
       </div>
@@ -345,7 +371,7 @@ get_header();
           <?php endif; ?>
         <?php endwhile; endif; ?>
         <div class="loc-actions">
-          <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-final')">Request Appointment</button>
+          <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-final')"><?php echo esc_html( $primary_cta ); ?></button>
           <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration</a>
         </div>
       </article>

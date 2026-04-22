@@ -1,5 +1,5 @@
 <?php
-$portal_url = vmc_get('vmc_portal_url','https://www.petdesk.com');
+$portal_url = vmc_patient_portal_page_url();
 $ft_phone   = vmc_get('vmc_ft_phone','(859) 442-4420');
 $ind_phone  = vmc_get('vmc_ind_phone','(859) 356-2242');
 $ft_link    = vmc_phone_link('ft');
@@ -62,7 +62,7 @@ $ind_link   = vmc_phone_link('ind');
           </span>
           <div class="apt-option-text">
             <strong><?php esc_html_e('Book Online','vmc'); ?></strong>
-            <span><?php esc_html_e('Patient portal · fastest option','vmc'); ?></span>
+            <span><?php esc_html_e('Go to patient portal & online booking page','vmc'); ?></span>
           </div>
           <svg class="apt-option-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>

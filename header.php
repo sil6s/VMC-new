@@ -129,11 +129,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
   <div class="nav-right">
-    <a href="<?php echo esc_url(vmc_get('vmc_portal_url')); ?>" target="_blank" rel="noopener" class="nav-portal">
+    <a href="<?php echo esc_url(vmc_patient_portal_page_url()); ?>" class="nav-portal">
       <?php esc_html_e('Patient Portal','vmc'); ?>
     </a>
 
-    <a href="<?php echo esc_url(vmc_get('vmc_pharmacy_url','#')); ?>" target="_blank" rel="noopener" class="nav-portal nav-pharmacy">
+    <a href="<?php echo esc_url(vmc_online_pharmacy_page_url()); ?>" class="nav-portal nav-pharmacy">
       <?php esc_html_e('Online Pharmacy','vmc'); ?>
     </a>
 
@@ -170,11 +170,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <?php esc_html_e('Call Us Now','vmc'); ?>
     </a>
 
-    <a href="<?php echo esc_url(vmc_get('vmc_portal_url')); ?>" target="_blank" rel="noopener" class="mob-btn-outline" onclick="closeMob()">
+    <a href="<?php echo esc_url(vmc_patient_portal_page_url()); ?>" class="mob-btn-outline" onclick="closeMob()">
       <?php esc_html_e('Patient Portal','vmc'); ?>
     </a>
 
-    <a href="<?php echo esc_url(vmc_get('vmc_pharmacy_url','#')); ?>" target="_blank" rel="noopener" class="mob-btn-outline mob-btn-pharmacy" onclick="closeMob()">
+    <a href="<?php echo esc_url(vmc_online_pharmacy_page_url()); ?>" class="mob-btn-outline mob-btn-pharmacy" onclick="closeMob()">
       <?php esc_html_e('Online Pharmacy','vmc'); ?>
     </a>
   </div>

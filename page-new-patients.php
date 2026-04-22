@@ -178,7 +178,7 @@ $testimonials_fallback = [
 
 /* tablet */
 @media (max-width: 1100px) {
-  .hero .np-shell.np-hero {
+  .hero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     min-height: 620px;
   }
@@ -195,9 +195,8 @@ $testimonials_fallback = [
 
 /* mobile */
 @media (max-width: 900px) {
-  .hero .np-shell.np-hero {
+  .hero {
     grid-template-columns: 1fr;
-    padding-right: var(--pad);
     min-height: auto;
   }
 
@@ -206,7 +205,8 @@ $testimonials_fallback = [
     padding: 48px 0 24px;
   }
 
-  .hero .np-hero-media {
+  .hero .np-hero-media,
+  .hero .hero-img {
     min-height: 360px;
   }
 }

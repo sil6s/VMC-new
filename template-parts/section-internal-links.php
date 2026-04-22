@@ -8,12 +8,12 @@ $heading  = get_field('intlinks_heading') ?: 'Explore Our Veterinary Services';
 $acf_items = get_field('intlinks_items');
 
 $fallback_items = [
-    [ 'ili_label' => 'Dental Care',         'ili_url' => '/service-item/veterinary-dental-care-northern-kentucky/',    'ili_desc' => 'COHAT cleanings and oral health assessments' ],
+    [ 'ili_label' => 'Dental Care',         'ili_url' => '/service-item/pet-dental-care-northern-kentucky/',    'ili_desc' => 'COHAT cleanings and oral health assessments' ],
     [ 'ili_label' => 'Soft Tissue Surgery', 'ili_url' => '/service-item/pet-soft-tissue-surgery-northern-kentucky/',   'ili_desc' => 'Spay, neuter, mass removal and more' ],
     [ 'ili_label' => 'Wellness Exams',      'ili_url' => '/service-item/pet-wellness-exams-northern-kentucky/',         'ili_desc' => 'Preventive care and annual checkups' ],
-    [ 'ili_label' => 'Urgent Care',         'ili_url' => '/service-item/urgent-veterinary-care-northern-kentucky/',     'ili_desc' => 'Same-day urgent care during clinic hours' ],
+    [ 'ili_label' => 'Urgent Care',         'ili_url' => '/service-item/northern-kentucky-urgent-care-vet/',     'ili_desc' => 'Same-day urgent care during clinic hours' ],
     [ 'ili_label' => 'Behavior',            'ili_url' => '/service-item/pet-behavior-consultations-northern-kentucky/', 'ili_desc' => 'Anxiety, aggression, and behavior support' ],
-    [ 'ili_label' => 'Cat-Friendly Visits', 'ili_url' => '/service-item/cat-friendly-veterinarian-northern-kentucky/', 'ili_desc' => 'Cat-only appointment windows available' ],
+    [ 'ili_label' => 'Cat-Friendly Visits', 'ili_url' => '/service-item/cat-friendly-vet-northern-kentucky/', 'ili_desc' => 'Cat-only appointment windows available' ],
     [ 'ili_label' => 'New Patients',        'ili_url' => '/new-patients/',                                              'ili_desc' => 'First visit info and registration forms' ],
     [ 'ili_label' => 'Contact Us',          'ili_url' => '/contact/',                                                   'ili_desc' => 'Get in touch or find our locations' ],
 ];

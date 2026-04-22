@@ -78,7 +78,7 @@ $legal     = vmc_get('vmc_footer_legal','Fear-Free Certified · Licensed in KY &
         <a href="<?php echo esc_url(vmc_phone_link('ft')); ?>"><?php echo esc_html($ft_phone); ?> · FT</a>
         <a href="<?php echo esc_url(vmc_phone_link('ind')); ?>"><?php echo esc_html($ind_phone); ?> · IND</a>
         <a href="<?php echo esc_url(home_url('/#contact')); ?>"><?php esc_html_e('Directions','vmc'); ?></a>
-        <a href="<?php echo esc_url(vmc_get('vmc_portal_url','https://www.petdesk.com')); ?>" target="_blank" rel="noopener"><?php esc_html_e('Patient Portal','vmc'); ?></a>
+        <a href="<?php echo esc_url(vmc_patient_portal_page_url()); ?>"><?php esc_html_e('Patient Portal','vmc'); ?></a>
         <a href="#" onclick="openAptModal('footer'); return false;"><?php esc_html_e('Book a Visit','vmc'); ?></a>
       </div>
     </div>
