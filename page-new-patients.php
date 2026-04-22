@@ -150,7 +150,7 @@ $testimonials_fallback = [
 
 
 
-.hero .np-hero-media {
+.hero .hero-img {
   width: 100%;
   min-width: 0;
   min-height: 720px;
@@ -162,7 +162,7 @@ $testimonials_fallback = [
   border-radius: 0;
 }
 
-.hero .np-hero-media img {
+.hero .hero-img img {
   width: 100%;
   height: 100%;
   display: block;
@@ -183,12 +183,11 @@ $testimonials_fallback = [
     min-height: 620px;
   }
 
-  .hero .hero-copy,
-  .hero .np-hero-copy {
+  .hero .hero-copy {
     padding: 64px 40px 64px 0;
   }
 
-  .hero .np-hero-media {
+  .hero .hero-img {
     min-height: 620px;
   }
 }
@@ -200,12 +199,10 @@ $testimonials_fallback = [
     min-height: auto;
   }
 
-  .hero .hero-copy,
-  .hero .np-hero-copy {
+  .hero .hero-copy {
     padding: 48px 0 24px;
   }
 
-  .hero .np-hero-media,
   .hero .hero-img {
     min-height: 360px;
   }
