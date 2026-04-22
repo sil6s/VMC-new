@@ -113,6 +113,56 @@ acf_add_local_field_group([
 ]);
 
 // ══════════════════════════════════════════════════════════
+// 11. Online Booking + Portal Landing Page
+// ══════════════════════════════════════════════════════════
+$portal_template = [[
+    'param'    => 'page_template',
+    'operator' => '==',
+    'value'    => 'template-patient-portal-online-booking.php',
+]];
+
+acf_add_local_field_group([
+    'key'             => 'group_portal_booking_page',
+    'title'           => 'Patient Portal / Online Booking Page',
+    'menu_order'      => 110,
+    'position'        => 'normal',
+    'label_placement' => 'top',
+    'location'        => [ $portal_template ],
+    'fields'          => [
+        [ 'key' => 'field_portal_h1', 'label' => 'H1', 'name' => 'portal_h1', 'type' => 'text', 'default_value' => 'Northern Kentucky & Cincinnati Patient Portal and Online Booking' ],
+        [ 'key' => 'field_portal_intro', 'label' => 'Intro', 'name' => 'portal_intro', 'type' => 'textarea', 'rows' => 4, 'default_value' => 'Welcome to the Veterinary Medical Center patient portal and online booking page for Northern Kentucky and Cincinnati pet families. Use this secure page any time you need to sign in, request an appointment, review reminders, or complete the next step in your pet’s care plan.' ],
+        [ 'key' => 'field_portal_external_link_label', 'label' => 'Portal Button Label', 'name' => 'portal_external_link_label', 'type' => 'text', 'default_value' => 'Open Patient Portal & Online Booking' ],
+        [ 'key' => 'field_portal_external_link_url', 'label' => 'Portal External URL', 'name' => 'portal_external_link_url', 'type' => 'url', 'default_value' => 'https://tvmcft.use1.ezyvet.com/external/portal/main/login?id=2' ],
+        [ 'key' => 'field_portal_body', 'label' => 'Long-form SEO Body', 'name' => 'portal_body', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 1, 'default_value' => '<h2>Fast, secure online booking for Northern Kentucky and Cincinnati pet owners</h2><p>If you are searching for a practical and secure way to manage veterinary appointments, this patient portal and online booking page is designed for you. Veterinary Medical Center supports pet families in Fort Thomas, Independence, and nearby Cincinnati neighborhoods with one simple destination for portal access. Instead of hunting through old emails, bookmarks, or social media links, you can return to this page to start in seconds.</p><p>Our goal is to make scheduling feel easier. Many clients are balancing school drop-off, commutes, work meetings, and home responsibilities. A reliable online booking workflow helps you plan wellness exams, follow-up visits, and routine care in a way that fits your day. Existing clients can use the patient portal to sign in, review messages, and continue ongoing care communication with our team.</p><h2>When to use the patient portal</h2><p>Use this page when you need to request an appointment online, access your portal login, or quickly move from a reminder message to action. Northern Kentucky and Cincinnati pet owners often return here for preventive care planning, medication discussions, and next-step visits after diagnostics. We recommend bookmarking this page so your household always has one trusted location for online access.</p><p>For brand-new families, the portal is only one part of getting started. You can also review our <a href=\"/new-patients/\">new patient page</a> and complete the <a href=\"/new-patient-registration-form/\">new patient registration form</a> before your first visit. Returning clients can combine portal access with direct support by phone if needed.</p><h3>Helpful links for faster care coordination</h3><ul><li><a href=\"/contact/\">Contact our team</a> if you need scheduling help.</li><li><a href=\"/services/\">Explore veterinary services</a> for wellness, dental, surgery, and urgent concerns.</li><li><a href=\"https://www.avma.org/resources-tools/pet-owners\" target=\"_blank\" rel=\"noopener\">AVMA pet owner resources</a> for education and prevention guidance.</li></ul><p>Veterinary Medical Center serves families across Northern Kentucky and Cincinnati with clear communication and relationship-based care. This page exists to reduce confusion and help you get where you need to go quickly. When in doubt, use the button above to open the official portal, then call us if you would like help choosing the right appointment type.</p>' ],
+    ],
+]);
+
+// ══════════════════════════════════════════════════════════
+// 12. Online Pharmacy Landing Page
+// ══════════════════════════════════════════════════════════
+$pharmacy_template = [[
+    'param'    => 'page_template',
+    'operator' => '==',
+    'value'    => 'template-online-vet-pharmacy.php',
+]];
+
+acf_add_local_field_group([
+    'key'             => 'group_online_pharmacy_page',
+    'title'           => 'Online Vet Pharmacy Page',
+    'menu_order'      => 111,
+    'position'        => 'normal',
+    'label_placement' => 'top',
+    'location'        => [ $pharmacy_template ],
+    'fields'          => [
+        [ 'key' => 'field_pharmacy_h1', 'label' => 'H1', 'name' => 'pharmacy_h1', 'type' => 'text', 'default_value' => 'Northern Kentucky & Cincinnati Online Vet Pharmacy' ],
+        [ 'key' => 'field_pharmacy_intro', 'label' => 'Intro', 'name' => 'pharmacy_intro', 'type' => 'textarea', 'rows' => 4, 'default_value' => 'Use our Northern Kentucky and Cincinnati online vet pharmacy page to request eligible refills, browse trusted products, and ship medications directly to your home when available.' ],
+        [ 'key' => 'field_pharmacy_external_link_label', 'label' => 'Pharmacy Button Label', 'name' => 'pharmacy_external_link_label', 'type' => 'text', 'default_value' => 'Open Online Vet Pharmacy' ],
+        [ 'key' => 'field_pharmacy_external_link_url', 'label' => 'Pharmacy External URL', 'name' => 'pharmacy_external_link_url', 'type' => 'url', 'default_value' => 'https://nky-vet.ourvet.com/' ],
+        [ 'key' => 'field_pharmacy_body', 'label' => 'Long-form SEO Body', 'name' => 'pharmacy_body', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 1, 'default_value' => '<h2>Trusted online vet pharmacy access for Northern Kentucky and Cincinnati</h2><p>Welcome to the Veterinary Medical Center online pharmacy page. If you are looking for a Northern Kentucky and Cincinnati online vet pharmacy that feels straightforward and reliable, this is your direct link hub. We created this page so clients can find the right pharmacy URL quickly, avoid outdated links, and request care products from one familiar source.</p><p>Our online pharmacy experience helps pet owners who need convenience without sacrificing confidence. Families can request eligible medications, browse preventive products, and manage refill timing from home. This is especially helpful for multi-pet households, busy work schedules, and owners who want to keep monthly prevention routines consistent throughout the year.</p><h2>Why local veterinary pharmacy coordination matters</h2><p>Even when shopping online, your veterinary relationship still matters. A connected online pharmacy allows your care team to review requests, confirm appropriateness, and support safe use based on your pet’s history. That coordination can reduce mistakes and improve continuity for chronic conditions, long-term prevention, and ongoing treatment plans.</p><p>Use this page whenever you need quick pharmacy access. We also recommend saving it to your browser bookmarks and sharing it with other family members responsible for pet care. If a medication appears delayed or unavailable, our team can help you choose a backup path by phone.</p><h3>Related resources for pet families</h3><ul><li><a href=\"/patient-portal-online-booking/\">Patient portal and online booking</a> for appointments and follow-up care.</li><li><a href=\"/contact/\">Contact us</a> for refill questions or medication timing support.</li><li><a href=\"/services/\">Veterinary services</a> to review treatment options for your dog or cat.</li><li><a href=\"https://www.fda.gov/animal-veterinary/animal-health-literacy/fda-and-pet-medications\" target=\"_blank\" rel=\"noopener\">FDA pet medication guidance</a> for medication safety education.</li></ul><p>Veterinary Medical Center serves pet owners in Northern Kentucky and nearby Cincinnati with practical, relationship-based care. Our online vet pharmacy page keeps pharmacy access clear so you can spend less time searching and more time focused on your pet’s health.</p>' ],
+    ],
+]);
+
+// ══════════════════════════════════════════════════════════
 // 10. New Patients Page – Booking/Portal/Form Options
 // ══════════════════════════════════════════════════════════
 $new_patients_template = [[
@@ -134,7 +184,7 @@ acf_add_local_field_group([
             'label'         => 'Request Appointment URL',
             'name'          => 'request_appointment_url',
             'type'          => 'url',
-            'default_value' => home_url('/request-appointment/'),
+            'default_value' => home_url('/patient-portal-online-booking/'),
             'instructions'  => 'Primary booking software link for new patient requests.',
         ],
         [
@@ -142,7 +192,7 @@ acf_add_local_field_group([
             'label'         => 'Patient Portal URL',
             'name'          => 'portal_url',
             'type'          => 'url',
-            'default_value' => home_url('/patient-portal/'),
+            'default_value' => home_url('/patient-portal-online-booking/'),
             'instructions'  => 'Portal link (typically best for existing patients).',
         ],
         [
