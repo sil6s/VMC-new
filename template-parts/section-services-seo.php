@@ -25,7 +25,7 @@ $fallback_items = [
         'ssi_what'  => 'Dental disease is one of the most common health issues in dogs and cats. Our dental services include comprehensive oral health assessments and treatments (COHAT), professional dental cleanings under anesthesia, tooth extractions when needed, and ongoing oral health guidance for pet owners.',
         'ssi_when'  => 'Most dogs and cats develop significant dental disease by age 3 without regular professional care. Signs your pet needs a dental exam include bad breath, difficulty eating, drooling, pawing at the mouth, or visible tartar and redness along the gumline.',
         'ssi_why'   => 'We perform thorough pre-anesthetic assessments and use full anesthesia monitoring throughout every cleaning. You receive a detailed report of findings afterward. Early dental treatment protects your pet\'s comfort, appetite, and long-term organ health.',
-        'ssi_url'   => '/service-item/veterinary-dental-care-northern-kentucky/',
+        'ssi_url'   => '/service-item/pet-dental-care-northern-kentucky/',
     ],
     [
         'ssi_title' => 'Emergency & Urgent Veterinary Care',
@@ -33,7 +33,7 @@ $fallback_items = [
         'ssi_what'  => 'When your pet has an urgent health concern that cannot wait for a routine appointment, our team provides same-day urgent care during clinic hours. We evaluate and treat many non-life-threatening urgent conditions at both our Fort Thomas and Independence locations, with no long emergency room wait.',
         'ssi_when'  => 'Call us for urgent care if your pet is vomiting repeatedly, has a wound or laceration, is limping severely, has eye swelling or discharge, is straining to urinate, or is acting unusually lethargic or distressed. Always call first so we can prepare and advise.',
         'ssi_why'   => 'Our team provides calm, efficient urgent care in a familiar environment. We know your pet by name and can access their health history immediately to guide treatment decisions. We also help direct to 24-hour emergency facilities when after-hours or specialist care is needed.',
-        'ssi_url'   => '/service-item/urgent-veterinary-care-northern-kentucky/',
+        'ssi_url'   => '/service-item/northern-kentucky-urgent-care-vet/',
     ],
     [
         'ssi_title' => 'Pet Surgery in Northern Kentucky',
