@@ -3,121 +3,72 @@
  * Template Name: Vet Near Cincinnati SEO Page
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-$keyword        = 'vet near Cincinnati';
-$eyebrow        = get_field('loc_hero_eyebrow') ?: 'Vet Near Cincinnati';
-$h1             = get_field('loc_hero_heading') ?: 'Vet near Cincinnati with easy access and full-service care.';
-$hero_body      = get_field('loc_hero_body') ?: 'Veterinary Medical Center Fort Thomas is a practical option for Cincinnati families who want easier parking, clear communication, and local continuity for dogs and cats.';
-$primary_label  = get_field('loc_primary_button') ?: 'Request Appointment';
-$secondary_lbl  = get_field('loc_secondary_button') ?: 'Get Directions';
-$panel_heading  = get_field('loc_panel_heading') ?: 'Cincinnati-area families choose VMC for convenience and continuity';
-$panel_body     = get_field('loc_panel_body') ?: 'Use this page to move quickly from research to booking, registration, and pharmacy support.';
-$intro_heading  = get_field('loc_intro_heading') ?: 'A Cincinnati-close veterinary option without downtown stress';
-$intro_body     = get_field('loc_intro_body') ?: 'For many households, crossing the river to Fort Thomas is easier than navigating downtown parking for routine and follow-up veterinary visits.';
-$quick_body     = get_field('loc_quick_body') ?: 'We support wellness care, diagnostics, dental planning, surgery consultations, and same-week sick visit triage when available.';
-$resource_h     = get_field('loc_resource_heading') ?: 'Resources for Cincinnati pet owners';
-$resource_b     = get_field('loc_resource_body') ?: 'Use these links to book appointments, complete first-visit paperwork, and coordinate ongoing care online.';
+require_once get_template_directory() . '/inc/render-location-page.php';
 
-$image          = get_field('loc_image') ?: get_template_directory_uri() . '/assets/images/about-fort-thomas.jpg';
-$image_alt      = get_field('loc_image_alt') ?: 'vet near Cincinnati at Veterinary Medical Center Fort Thomas';
-$image_caption  = get_field('loc_image_caption') ?: 'Veterinary Medical Center Fort Thomas, a Cincinnati-close location right off I-471.';
-$team_image     = get_template_directory_uri() . '/assets/images/VMC Social Media.jpg';
-
-$address        = vmc_get('vmc_ft_address', '2000 Memorial Parkway, Fort Thomas, KY 41075');
-$phone          = vmc_get('vmc_ft_phone', '(859) 442-4420');
-$weekday_hours  = vmc_get('vmc_ft_hours_weekday', '8:00 AM – 6:00 PM');
-$sat_hours      = vmc_get('vmc_ft_hours_saturday', 'Rotating — call ahead');
-$phone_href     = preg_replace('/[^0-9+]/', '', $phone);
-$map_embed      = 'https://www.google.com/maps?q=' . rawurlencode($address) . '&output=embed';
-$map_link       = 'https://maps.google.com/?q=' . rawurlencode($address);
-$seo_body       = get_field('loc_seo_body');
-?>
-
-<div class="lp-page">
-  <section class="lp-hero">
-    <div class="lp-hero-copy">
-      <div class="eyebrow"><span class="eyebrow-dash"></span><?php echo esc_html($eyebrow); ?></div>
-      <h1 class="hero-h1"><?php echo esc_html($h1); ?></h1>
-      <p class="hero-body"><?php echo esc_html($hero_body); ?></p>
-      <div class="lp-actions">
-        <button class="btn-red" onclick="openAptModal('cincinnati-hero')"><?php echo esc_html($primary_label); ?></button>
-        <a class="btn-ghost" href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a>
-      </div>
-    </div>
-    <aside class="lp-hero-side">
-      <div class="lp-card">
-        <h2><?php echo esc_html($panel_heading); ?></h2>
-        <p><?php echo esc_html($panel_body); ?></p>
-        <ul class="lp-list">
-          <li><a href="tel:<?php echo esc_attr($phone_href); ?>"><?php echo esc_html($phone); ?></a></li>
-          <li><a href="<?php echo esc_url(vmc_patient_portal_page_url()); ?>">Patient Portal & Online Booking</a></li>
-          <li><a href="<?php echo esc_url(home_url('/new-patient-registration-form/')); ?>">New Patient Registration Form</a></li>
-        </ul>
-      </div>
-    </aside>
-  </section>
-
-  <section class="lp-section lp-section--white">
-    <div class="home-shell">
-      <div class="sec-eye"><span class="sec-lbl">Why Cincinnati Families Choose VMC</span><span class="sec-rule"></span></div>
-      <h2 class="sec-h2"><?php echo esc_html($intro_heading); ?></h2>
-      <p class="lp-copy"><?php echo esc_html($intro_body); ?></p>
-      <div class="lp-grid-2">
-        <article class="lp-image-card"><img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="eager"><p><?php echo esc_html($image_caption); ?></p></article>
-        <article class="lp-card">
-          <h3><?php echo esc_html($keyword); ?> with practical local access</h3>
-          <p><?php echo esc_html($quick_body); ?></p>
-          <div class="lp-chips">
-            <span class="lp-chip">Downtown Cincinnati</span><span class="lp-chip">Over-the-Rhine</span><span class="lp-chip">Mount Adams</span><span class="lp-chip">Newport</span><span class="lp-chip">Bellevue</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="lp-section lp-section--warm" id="directions">
-    <div class="home-shell">
-      <div class="sec-eye"><span class="sec-lbl">Office & Map</span><span class="sec-rule"></span></div>
-      <h2 class="sec-h2">Visit our Fort Thomas office from Cincinnati</h2>
-      <div class="lp-grid-2">
-        <article class="lp-map-card">
-          <iframe class="lp-map" src="<?php echo esc_url($map_embed); ?>" loading="lazy" title="Map to Veterinary Medical Center Fort Thomas"></iframe>
-          <div class="lp-map-body">
-            <h3><?php echo esc_html($address); ?></h3>
-            <p>Mon–Fri: <?php echo esc_html($weekday_hours); ?> · Saturday: <?php echo esc_html($sat_hours); ?></p>
-            <div class="lp-actions"><a class="btn-outline" target="_blank" rel="noopener" href="<?php echo esc_url($map_link); ?>"><?php echo esc_html($secondary_lbl); ?></a></div>
-          </div>
-        </article>
-        <article class="lp-card">
-          <h3><?php echo esc_html($resource_h); ?></h3>
-          <p><?php echo esc_html($resource_b); ?></p>
-          <ul class="lp-list">
-            <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Explore Services</a></li>
-            <li><a href="<?php echo esc_url(home_url('/online-vet-pharmacy-northern-kentucky-cincinnati/')); ?>">Online Vet Pharmacy</a></li>
-            <li><a href="https://www.avma.org/resources-tools/pet-owners" target="_blank" rel="noopener">AVMA Pet Owner Resources</a></li>
-          </ul>
-          <img src="<?php echo esc_url($team_image); ?>" alt="Vet near Cincinnati team at Veterinary Medical Center" style="width:100%;border-radius:8px;margin-top:16px;">
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="lp-section lp-section--white">
-    <div class="home-shell">
-      <article class="lp-card lp-card--seo">
-        <h2>How to choose a <?php echo esc_html($keyword); ?> that actually works for your schedule</h2>
-        <p>Cincinnati pet owners usually need more than proximity alone. They need a clinic where drop-off, parking, communication, and follow-up are all practical on a weekday. Veterinary Medical Center in Fort Thomas is built around that reality. For many households, the short drive across the river means less time navigating city parking and more time focused on your pet’s care plan.</p>
-        <p>Our team supports preventive care, diagnostics, dental planning, surgery coordination, and sick-visit guidance with an emphasis on clear next steps. If your pet has anxiety, mobility limitations, or chronic conditions, that consistency helps visits feel manageable from check-in through follow-up.</p>
-        <h3>What to do next</h3>
-        <p>Start by requesting an appointment through our patient portal and online booking page, complete your registration form, and save our online pharmacy page for refill support. These steps make future care easier for your whole household.</p>
-        <?php if ($seo_body) : ?><div class="lp-wysiwyg"><?php echo wp_kses_post($seo_body); ?></div><?php endif; ?>
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-          <?php if (trim(wp_strip_all_tags(get_the_content()))) : ?><div class="lp-wysiwyg"><?php the_content(); ?></div><?php endif; ?>
-        <?php endwhile; endif; ?>
-      </article>
-    </div>
-  </section>
-</div>
-
-<?php get_footer(); ?>
+vmc_render_location_page([
+    'id'             => 'cincinnati',
+    'keyword'        => 'vet near Cincinnati',
+    'eyebrow'        => 'Vet Near Cincinnati',
+    'h1'             => 'A trusted veterinarian near Cincinnati with easy Fort Thomas access.',
+    'intro'          => 'Veterinary Medical Center Fort Thomas is a practical choice for Cincinnati pet owners who want excellent care without downtown parking stress. Just across the river via I-471, our locally owned clinic provides full-service dog and cat care with the consistency families need for preventive medicine, diagnostics, surgery, dental treatment planning, and urgent sick visits when available. If you are searching for a veterinarian near Cincinnati who combines convenience with long-term relationships, VMC is ready to help.',
+    'hero_bullets'   => [
+        'Convenient across-the-river location minutes from downtown Cincinnati.',
+        'Experienced veterinary team focused on clear communication and continuity.',
+        'Comprehensive pet care in one clinic for routine and advanced needs.',
+    ],
+    'panel_heading'  => 'Near-Cincinnati care with practical scheduling.',
+    'panel_body'     => 'Book online, complete registration in advance, and partner with a local team that keeps follow-up simple.',
+    'phone'          => vmc_get('vmc_ft_phone', '(859) 442-4420'),
+    'address'        => vmc_get('vmc_ft_address', '2000 Memorial Parkway, Fort Thomas, KY 41075'),
+    'hours_weekday'  => vmc_get('vmc_ft_hours_weekday', '8:00 AM – 6:00 PM'),
+    'hours_saturday' => vmc_get('vmc_ft_hours_saturday', 'Rotating — call ahead'),
+    'image'          => get_template_directory_uri() . '/assets/images/about-fort-thomas.jpg',
+    'image_alt'      => 'Veterinary Medical Center Fort Thomas near Cincinnati and I-471',
+    'image_caption'  => 'A near-Cincinnati clinic for families who want trusted veterinary care without downtown friction.',
+    'second_image'   => get_template_directory_uri() . '/assets/images/VMC Social Media.jpg',
+    'second_alt'     => 'Veterinary Medical Center team caring for Cincinnati and Northern Kentucky pets',
+    'trust'          => [
+        'Independent, locally owned veterinary care guided by community values.',
+        'Experienced doctors and support team delivering continuity visit after visit.',
+        'Modern diagnostic approach for clearer answers and faster treatment planning.',
+        'Personalized care for anxious pets, cats, and chronic condition management.',
+        'Strong community presence for families in Cincinnati and Northern Kentucky.',
+    ],
+    'services'       => [
+        [ 'title' => 'Wellness Exams', 'body' => 'Routine preventive care including vaccines, annual exams, parasite prevention, and nutrition guidance.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Surgery', 'body' => 'Surgical consultation and procedures with attentive anesthesia monitoring and post-op support.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Dental Care', 'body' => 'Dental assessments and oral care planning that protect comfort and reduce long-term disease risk.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Diagnostics', 'body' => 'Diagnostic evaluations for new symptoms, chronic concerns, and treatment-response monitoring.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Urgent Care', 'body' => 'Same-day sick care options for many non-emergency issues when scheduling availability allows.', 'url' => home_url('/contact/') ],
+    ],
+    'new_patient_steps' => [
+        [ 'title' => 'Request your appointment', 'body' => 'Contact us online or by phone and we will match your pet with the right visit type.' ],
+        [ 'title' => 'Submit intake forms', 'body' => 'Fill out the new patient registration form and send prior records before arrival.' ],
+        [ 'title' => 'Visit the clinic', 'body' => 'Meet your veterinarian, review concerns, and leave with a clear plan and follow-up guidance.' ],
+        [ 'title' => 'Coordinate ongoing care', 'body' => 'Use reminders and follow-up communication to keep preventive and chronic care on schedule.' ],
+    ],
+    'community_heading' => 'Areas we serve for pet owners near Cincinnati.',
+    'community'      => [
+        'Many households from downtown Cincinnati, Mount Adams, Hyde Park, and nearby riverfront neighborhoods choose our Fort Thomas clinic for easier access and reliable continuity.',
+        'If you are comparing vets near Cincinnati, VMC offers local pet care with practical travel routes, full-service medicine, and personalized support.',
+    ],
+    'areas'          => [
+        [ 'label' => 'Downtown Cincinnati', 'slug' => '/vet-near-cincinnati/' ],
+        [ 'label' => 'Mount Adams', 'slug' => '/vet-near-cincinnati/' ],
+        [ 'label' => 'Hyde Park', 'slug' => '/vet-near-cincinnati/' ],
+        [ 'label' => 'Newport', 'slug' => '/vet-fort-thomas-ky/' ],
+        [ 'label' => 'Bellevue', 'slug' => '/vet-fort-thomas-ky/' ],
+    ],
+    'location_heading' => 'Visit our Fort Thomas clinic from Cincinnati.',
+    'locality'       => 'Fort Thomas',
+    'schema_name'    => 'Veterinary Medical Center Near Cincinnati',
+    'meta'           => 'Vet near Cincinnati with full-service pet care, easy Fort Thomas access, and locally owned continuity-focused veterinary support.',
+    'faq'            => [
+        [ 'How far is your clinic from downtown Cincinnati?', 'Our Fort Thomas location is minutes from downtown via I-471, making routine exams and follow-up visits easier for many city households.' ],
+        [ 'Can I book online if I live in Cincinnati?', 'Yes. Cincinnati-area families can request appointments online and complete new patient registration before the first visit.' ],
+        [ 'Do you handle emergencies?', 'We treat many urgent cases during open hours, but true life-threatening emergencies may require immediate referral to a 24/7 emergency hospital.' ],
+        [ 'Do you provide cost clarity before treatment?', 'Yes. We discuss recommendations, options, and estimated pricing so you can make informed decisions about your pet’s care.' ],
+    ],
+]);

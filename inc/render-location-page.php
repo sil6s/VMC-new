@@ -3,12 +3,11 @@
  * Location page renderer.
  * Call vmc_render_location_page( $config ) from a page template.
  *
- * Required config keys: id, keyword, eyebrow, h1, intro, phone, address,
+ * Required config keys: id, keyword, eyebrow, h1, intro, hero_bullets[], phone, address,
  * hours_weekday, hours_saturday, image, image_alt, image_caption,
  * second_image, second_alt, trust[], community_heading, community[],
- * areas[], location_heading, locality, schema_name, meta, faq[][].
- *
- * Optional: panel_heading, panel_body.
+ * areas[label|slug][], location_heading, locality, schema_name, meta, faq[][],
+ * new_patient_steps[title|body][], services[title|body|url][].
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -21,14 +20,15 @@ function vmc_render_location_page( array $cfg ): void {
     $keyword    = $cfg['keyword'];
     $id         = $cfg['id'];
 
-    $eyebrow    = get_field( 'loc_hero_eyebrow' )  ?: $cfg['eyebrow'];
-    $h1         = get_field( 'loc_hero_heading' )  ?: $cfg['h1'];
-    $hero_body  = get_field( 'loc_hero_body' )     ?: $cfg['intro'];
-    $panel_head = get_field( 'loc_panel_heading' ) ?: ( $cfg['panel_heading'] ?? 'Start with a local team that knows the area.' );
-    $panel_body = get_field( 'loc_panel_body' )    ?: ( $cfg['panel_body'] ?? 'Call, register, or request an appointment. VMC makes the next step clear for new and returning pet families.' );
-    $image      = get_field( 'loc_image' )         ?: $cfg['image'];
-    $image_alt  = get_field( 'loc_image_alt' )     ?: $cfg['image_alt'];
-    $image_cap  = get_field( 'loc_image_caption' ) ?: $cfg['image_caption'];
+    $eyebrow      = get_field( 'loc_hero_eyebrow' )  ?: $cfg['eyebrow'];
+    $h1           = get_field( 'loc_hero_heading' )  ?: $cfg['h1'];
+    $hero_body    = get_field( 'loc_hero_body' )     ?: $cfg['intro'];
+    $panel_head   = get_field( 'loc_panel_heading' ) ?: ( $cfg['panel_heading'] ?? 'Start with a local team that knows the area.' );
+    $panel_body   = get_field( 'loc_panel_body' )    ?: ( $cfg['panel_body'] ?? 'Call, register, or request an appointment. VMC makes the next step clear for new and returning pet families.' );
+    $image        = get_field( 'loc_image' )         ?: $cfg['image'];
+    $image_alt    = get_field( 'loc_image_alt' )     ?: $cfg['image_alt'];
+    $image_cap    = get_field( 'loc_image_caption' ) ?: $cfg['image_caption'];
+    $hero_bullets = $cfg['hero_bullets'] ?? [];
 
     $map_embed  = 'https://www.google.com/maps?q=' . rawurlencode( $address ) . '&output=embed';
     $map_link   = 'https://maps.google.com/?q=' . rawurlencode( $address );
@@ -38,33 +38,38 @@ function vmc_render_location_page( array $cfg ): void {
 
     $arrow_svg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>';
 
-    $service_cards = [
-        [ 'Wellness',    'Life-stage exams, vaccines, parasite prevention, nutrition guidance, and preventive care planning for dogs and cats.' ],
-        [ 'Dental Care', 'Oral exams, cleanings, dental treatment planning, and home-care guidance to protect comfort and long-term health.' ],
-        [ 'Surgery',     'Soft tissue surgery with careful preparation, anesthesia monitoring, recovery support, and clear discharge instructions.' ],
-        [ 'Diagnostics', 'Practical testing and medical workups when symptoms, chronic issues, or new health concerns need a clearer answer.' ],
-        [ 'Sick Visits', 'Medical care for vomiting, skin issues, limping, coughing, appetite changes, behavior changes, and other concerns.' ],
+    $service_cards = $cfg['services'] ?? [
+        [ 'title' => 'Wellness Exams', 'body' => 'Life-stage exams, vaccines, parasite prevention, nutrition guidance, and preventive care planning for dogs and cats.', 'url' => home_url( '/services/' ) ],
+        [ 'title' => 'Dental Care', 'body' => 'Oral exams, cleanings, dental treatment planning, and home-care guidance to protect comfort and long-term health.', 'url' => home_url( '/services/' ) ],
+        [ 'title' => 'Surgery', 'body' => 'Soft tissue surgery with careful preparation, anesthesia monitoring, recovery support, and clear discharge instructions.', 'url' => home_url( '/services/' ) ],
+        [ 'title' => 'Diagnostics', 'body' => 'Practical testing and medical workups when symptoms, chronic issues, or new health concerns need a clearer answer.', 'url' => home_url( '/services/' ) ],
+        [ 'title' => 'Urgent & Sick Visits', 'body' => 'Medical care for vomiting, skin issues, limping, coughing, appetite changes, behavior changes, and other concerns.', 'url' => home_url( '/services/' ) ],
     ];
 
     get_header();
     ?>
 
-    <div class="lp lp--<?php echo esc_attr( $id ); ?>">
+    <div class="lp lp--<?php echo esc_attr( $id ); ?> lp-page">
 
-      <!-- ─── HERO ─── -->
       <section class="lp-hero">
         <div class="lp-hero-copy">
           <div class="eyebrow">
             <span class="eyebrow-dash"></span>
             <?php echo esc_html( $eyebrow ); ?>
           </div>
-          <h1 class="hero-h1" style="max-width:15ch"><?php echo esc_html( $h1 ); ?></h1>
-          <p class="hero-body" style="max-width:620px"><?php echo esc_html( $hero_body ); ?></p>
-          <div class="lp-actions" style="margin-top:32px">
+          <h1 class="hero-h1"><?php echo esc_html( $h1 ); ?></h1>
+          <p class="hero-body"><?php echo esc_html( $hero_body ); ?></p>
+          <?php if ( ! empty( $hero_bullets ) ) : ?>
+            <ul class="lp-hero-points">
+              <?php foreach ( $hero_bullets as $bullet ) : ?>
+                <li><?php echo esc_html( $bullet ); ?></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+          <div class="lp-actions" style="margin-top:26px">
             <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-hero')">Request Appointment</button>
-            <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">
-              New Patient Registration <?php echo $arrow_svg; ?>
-            </a>
+            <a class="btn-ghost" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Call Now</a>
+            <a class="btn-outline" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Book Online</a>
           </div>
         </div>
         <aside class="lp-hero-side">
@@ -72,12 +77,9 @@ function vmc_render_location_page( array $cfg ): void {
             <h2><?php echo esc_html( $panel_head ); ?></h2>
             <p><?php echo esc_html( $panel_body ); ?></p>
             <ul class="lp-list" style="margin-top:22px">
-              <li>
-                <a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Complete New Patient Registration</a>
-              </li>
+              <li><a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a></li>
+              <li><a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Complete New Patient Registration</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">Explore Full-Service Pet Care</a></li>
               <li style="border-bottom:none;padding-bottom:0;padding-top:14px">
                 <button class="btn-red" style="width:100%;justify-content:center" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-panel')">Request Appointment</button>
               </li>
@@ -86,172 +88,176 @@ function vmc_render_location_page( array $cfg ): void {
         </aside>
       </section>
 
-      <!-- ─── WHY VMC ─── -->
       <section class="lp-section lp-section--white">
-        <div class="rv">
-          <div class="sec-eye"><span class="sec-lbl">Why Choose Us</span><span class="sec-rule"></span></div>
-          <h2 class="sec-h2"><?php echo esc_html( $keyword ); ?> care with local ownership and real continuity.</h2>
-          <p class="lp-copy">Veterinary Medical Center is locally owned, women-led, and relationship-based. Families choose VMC because they want a dog and cat veterinarian who communicates clearly, supports long-term pet health, and stays accountable to the community instead of a corporate office.</p>
-          <div class="lp-grid-2">
-            <article class="lp-image-card rv">
-              <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" loading="eager">
-              <div class="lp-image-caption"><?php echo esc_html( $image_cap ); ?></div>
-            </article>
-            <article class="lp-card rv rv2">
-              <h3>What makes VMC different</h3>
-              <ul class="lp-list">
-                <?php foreach ( $cfg['trust'] as $item ) : ?>
-                  <li><?php echo esc_html( $item ); ?></li>
-                <?php endforeach; ?>
-              </ul>
-              <p style="margin-top:18px">Learn more <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">about VMC</a>, compare our <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">veterinary services</a>, or review the <a href="<?php echo esc_url( home_url( '/first-vet-visit-northern-kentucky/' ) ); ?>">first visit guide</a>.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SERVICES ─── -->
-      <section class="lp-section lp-section--warm">
-        <div class="rv">
-          <div class="sec-eye"><span class="sec-lbl">Services</span><span class="sec-rule"></span></div>
-          <h2 class="sec-h2"><?php echo esc_html( $keyword ); ?> services for dogs and cats.</h2>
-          <p class="lp-copy">VMC provides full-service veterinary care in Northern Kentucky, including the everyday visits and more complex medical decisions that pets need over a lifetime.</p>
-          <div class="lp-grid-3">
-            <?php foreach ( $service_cards as $card ) : ?>
-              <article class="lp-service-card rv">
-                <h3><?php echo esc_html( $card[0] ); ?></h3>
-                <p><?php echo esc_html( $card[1] ); ?></p>
-              </article>
-            <?php endforeach; ?>
-          </div>
-          <div class="lp-actions" style="margin-top:28px">
-            <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-services')">Request Appointment</button>
-            <a class="btn-ghost" href="<?php echo esc_url( home_url( '/services/' ) ); ?>">
-              Explore All Services <?php echo $arrow_svg; ?>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── COMMUNITY ─── -->
-      <section class="lp-section lp-section--white">
-        <div class="rv">
-          <div class="lp-grid-2">
-            <article class="lp-card rv">
-              <div class="sec-eye"><span class="sec-lbl">Local Credibility</span><span class="sec-rule"></span></div>
-              <h2><?php echo esc_html( $cfg['community_heading'] ); ?></h2>
-              <?php foreach ( $cfg['community'] as $para ) : ?>
-                <p style="margin-top:12px"><?php echo esc_html( $para ); ?></p>
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">Services</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2">Services for pets in <?php echo esc_html( $locality ); ?>.</h2>
+            <p class="lp-copy"><?php echo esc_html( $keyword ); ?> families can rely on one team for routine preventive medicine and more complex care decisions. Explore the core service categories below to find the right next step for your dog or cat.</p>
+            <div class="lp-grid-3">
+              <?php foreach ( $service_cards as $card ) : ?>
+                <article class="lp-service-card rv">
+                  <h3><?php echo esc_html( $card['title'] ); ?></h3>
+                  <p><?php echo esc_html( $card['body'] ); ?></p>
+                  <a href="<?php echo esc_url( $card['url'] ); ?>">Learn more <?php echo $arrow_svg; ?></a>
+                </article>
               <?php endforeach; ?>
-              <div class="lp-chips">
-                <?php foreach ( $cfg['areas'] as $area ) : ?>
-                  <span class="lp-chip"><?php echo esc_html( $area ); ?></span>
-                <?php endforeach; ?>
-              </div>
-            </article>
-            <article class="lp-image-card rv rv2">
-              <img src="<?php echo esc_url( $cfg['second_image'] ); ?>" alt="<?php echo esc_attr( $cfg['second_alt'] ); ?>" loading="lazy">
-              <div class="lp-image-caption">Women-led, locally owned veterinary care for families searching <?php echo esc_html( $keyword ); ?>.</div>
-            </article>
+            </div>
+            <div class="lp-actions" style="margin-top:26px">
+              <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-services')">Request Appointment</button>
+              <a class="btn-ghost" href="<?php echo esc_url( home_url( '/services/' ) ); ?>">View All Services <?php echo $arrow_svg; ?></a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ─── MAP / LOCATION ─── -->
-      <section class="lp-section lp-section--cream" id="directions">
-        <div class="rv">
-          <div class="sec-eye"><span class="sec-lbl">Location &amp; Hours</span><span class="sec-rule"></span></div>
-          <h2 class="sec-h2"><?php echo esc_html( $cfg['location_heading'] ); ?></h2>
-          <div class="lp-grid-2">
-            <div class="lp-map-card rv">
-              <iframe
-                class="lp-map"
-                src="<?php echo esc_url( $map_embed ); ?>"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Map to Veterinary Medical Center <?php echo esc_attr( $locality ); ?>"
-              ></iframe>
-              <div class="lp-map-body">
-                <h3><?php echo esc_html( $address ); ?></h3>
-                <p>Call <a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a> or request an appointment online.</p>
-                <div class="lp-map-meta">
-                  <div>
-                    <strong>Phone</strong>
-                    <a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a>
-                  </div>
-                  <div>
-                    <strong>Directions</strong>
-                    <a href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener">Open in Google Maps</a>
-                  </div>
-                  <div>
-                    <strong>Mon – Fri</strong>
-                    <span><?php echo esc_html( $cfg['hours_weekday'] ); ?></span>
-                  </div>
-                  <div>
-                    <strong>Saturday</strong>
-                    <span><?php echo esc_html( $cfg['hours_saturday'] ); ?></span>
+      <section class="lp-section lp-section--warm">
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">Why Choose VMC</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2">Why choose our <?php echo esc_html( $locality ); ?> vet clinic.</h2>
+            <p class="lp-copy">If you are searching for a veterinarian near <?php echo esc_html( $locality ); ?>, trust and continuity matter just as much as convenience. VMC is locally owned, relationship-based, and structured for clear communication at every visit.</p>
+            <div class="lp-grid-2">
+              <article class="lp-image-card rv">
+                <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" loading="eager">
+                <div class="lp-image-caption"><?php echo esc_html( $image_cap ); ?></div>
+              </article>
+              <article class="lp-card rv rv2">
+                <h3>What makes VMC different</h3>
+                <ul class="lp-list">
+                  <?php foreach ( $cfg['trust'] as $item ) : ?>
+                    <li><?php echo esc_html( $item ); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <div class="lp-actions" style="margin-top:16px">
+                  <a class="btn-outline" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About Our Team</a>
+                  <a class="btn-outline" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact the Clinic</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section lp-section--white">
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">New Patients</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2">What to expect as a new patient in <?php echo esc_html( $locality ); ?>.</h2>
+            <div class="lp-grid-steps">
+              <?php foreach ( $cfg['new_patient_steps'] as $idx => $step ) : ?>
+                <article class="lp-step-card rv">
+                  <span class="lp-step-num"><?php echo esc_html( (string) ( $idx + 1 ) ); ?></span>
+                  <h3><?php echo esc_html( $step['title'] ); ?></h3>
+                  <p><?php echo esc_html( $step['body'] ); ?></p>
+                </article>
+              <?php endforeach; ?>
+            </div>
+            <div class="lp-actions" style="margin-top:24px">
+              <a class="btn-red" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Start New Patient Form</a>
+              <button class="btn-ghost" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-new-patient')">Request Appointment</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section lp-section--cream">
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">Areas We Serve</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2"><?php echo esc_html( $cfg['community_heading'] ); ?></h2>
+            <?php foreach ( $cfg['community'] as $para ) : ?>
+              <p class="lp-copy" style="margin-top:12px"><?php echo esc_html( $para ); ?></p>
+            <?php endforeach; ?>
+            <div class="lp-linked-chips">
+              <?php foreach ( $cfg['areas'] as $area ) : ?>
+                <a class="lp-chip" href="<?php echo esc_url( home_url( $area['slug'] ) ); ?>"><?php echo esc_html( $area['label'] ); ?></a>
+              <?php endforeach; ?>
+            </div>
+            <div class="lp-actions" style="margin-top:22px">
+              <a class="btn-outline" href="<?php echo esc_url( home_url( '/vet-near-me/' ) ); ?>">Vets Near Me</a>
+              <a class="btn-outline" href="<?php echo esc_url( home_url( '/services/' ) ); ?>">Pet Care Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section lp-section--white" id="directions">
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">Location &amp; Hours</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2"><?php echo esc_html( $cfg['location_heading'] ); ?></h2>
+            <div class="lp-grid-2">
+              <div class="lp-map-card rv">
+                <iframe class="lp-map" src="<?php echo esc_url( $map_embed ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Veterinary Medical Center <?php echo esc_attr( $locality ); ?>"></iframe>
+                <div class="lp-map-body">
+                  <h3><?php echo esc_html( $address ); ?></h3>
+                  <p>Call <a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a> or request an appointment online.</p>
+                  <div class="lp-map-meta">
+                    <div><strong>Phone</strong><a href="tel:<?php echo esc_attr( $phone_href ); ?>"><?php echo esc_html( $phone ); ?></a></div>
+                    <div><strong>Directions</strong><a href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener">Open in Google Maps</a></div>
+                    <div><strong>Mon – Fri</strong><span><?php echo esc_html( $cfg['hours_weekday'] ); ?></span></div>
+                    <div><strong>Saturday</strong><span><?php echo esc_html( $cfg['hours_saturday'] ); ?></span></div>
                   </div>
                 </div>
               </div>
+              <article class="lp-card rv rv2">
+                <h3>Ready for your first visit?</h3>
+                <p>Use the <a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">new patient registration form</a>, <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">contact our team</a> with questions, or browse our <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">pet health resources</a>.</p>
+                <div class="lp-actions" style="margin-top:22px">
+                  <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-map')">Book Appointment</button>
+                  <a class="btn-outline" href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener">Get Directions</a>
+                </div>
+              </article>
             </div>
-            <article class="lp-card rv rv2">
-              <h3>Ready for your first visit?</h3>
-              <p>Use the <a href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">new patient registration form</a> before your appointment, <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">contact our team</a> with questions, or browse the <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">VMC blog</a> for pet health guidance.</p>
-              <p style="margin-top:10px">Exploring Northern Kentucky vets? See our <a href="<?php echo esc_url( home_url( '/northern-kentucky-vet-near-me/' ) ); ?>">vet near me page</a> for broader local guidance.</p>
-              <div class="lp-actions" style="margin-top:22px">
-                <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-map')">Book Appointment</button>
-                <a class="btn-outline" href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section lp-section--white">
+        <div class="home-shell">
+          <div class="rv">
+            <div class="sec-eye"><span class="sec-lbl">FAQ</span><span class="sec-rule"></span></div>
+            <h2 class="sec-h2"><?php echo esc_html( $keyword ); ?> — common questions.</h2>
+            <div class="lp-grid-2">
+              <?php foreach ( $cfg['faq'] as $i => $faq ) : ?>
+                <details class="lp-faq-card rv" <?php echo 0 === $i ? 'open' : ''; ?>>
+                  <summary><?php echo esc_html( $faq[0] ); ?></summary>
+                  <p><?php echo esc_html( $faq[1] ); ?></p>
+                </details>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section lp-section--warm">
+        <div class="home-shell">
+          <div class="rv">
+            <article class="lp-cta-card rv">
+              <div class="sec-eye"><span class="sec-lbl">Get Started</span><span class="sec-rule"></span></div>
+              <h2>Choose local veterinary care that keeps pet care simple.</h2>
+              <p><?php echo esc_html( $keyword ); ?> searches should end with a veterinary team that is nearby, trustworthy, and easy to contact. VMC gives families full-service care, clear communication, local ownership, and a direct path to the first appointment.</p>
+              <?php if ( get_field( 'loc_seo_body' ) ) : ?>
+                <div class="lp-copy" style="margin-top:20px"><?php echo wp_kses_post( get_field( 'loc_seo_body' ) ); ?></div>
+              <?php endif; ?>
+              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                <?php if ( trim( wp_strip_all_tags( get_the_content() ) ) ) : ?>
+                  <div class="lp-copy" style="margin-top:20px"><?php the_content(); ?></div>
+                <?php endif; ?>
+              <?php endwhile; endif; ?>
+              <div class="lp-actions" style="margin-top:28px">
+                <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-cta')">Request Appointment</button>
+                <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration <?php echo $arrow_svg; ?></a>
               </div>
             </article>
           </div>
-        </div>
-      </section>
-
-      <!-- ─── FAQ ─── -->
-      <section class="lp-section lp-section--white">
-        <div class="rv">
-          <div class="sec-eye"><span class="sec-lbl">FAQ</span><span class="sec-rule"></span></div>
-          <h2 class="sec-h2"><?php echo esc_html( $keyword ); ?> — common questions.</h2>
-          <div class="lp-grid-2">
-            <?php foreach ( $cfg['faq'] as $i => $faq ) : ?>
-              <details class="lp-faq-card rv" <?php echo 0 === $i ? 'open' : ''; ?>>
-                <summary><?php echo esc_html( $faq[0] ); ?></summary>
-                <p><?php echo esc_html( $faq[1] ); ?></p>
-              </details>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── FINAL CTA ─── -->
-      <section class="lp-section lp-section--warm">
-        <div class="rv">
-          <article class="lp-cta-card rv">
-            <div class="sec-eye"><span class="sec-lbl">Get Started</span><span class="sec-rule"></span></div>
-            <h2>Choose local veterinary care that makes the next step clear.</h2>
-            <p><?php echo esc_html( $keyword ); ?> searches should end with a veterinary team that is nearby, trustworthy, and easy to contact. VMC gives families full-service care, clear communication, local ownership, and a practical path to the first appointment.</p>
-            <?php if ( get_field( 'loc_seo_body' ) ) : ?>
-              <div class="lp-copy" style="margin-top:20px"><?php echo wp_kses_post( get_field( 'loc_seo_body' ) ); ?></div>
-            <?php endif; ?>
-            <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-              <?php if ( trim( wp_strip_all_tags( get_the_content() ) ) ) : ?>
-                <div class="lp-copy" style="margin-top:20px"><?php the_content(); ?></div>
-              <?php endif; ?>
-            <?php endwhile; endif; ?>
-            <div class="lp-actions" style="margin-top:28px">
-              <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-cta')">Request Appointment</button>
-              <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">
-                New Patient Registration <?php echo $arrow_svg; ?>
-              </a>
-            </div>
-          </article>
         </div>
       </section>
 
     </div>
 
     <?php
-    // ── Schema markup ──────────────────────────────────────────
     $schema_faqs = [];
     foreach ( $cfg['faq'] as $faq ) {
         $schema_faqs[] = [
@@ -287,7 +293,7 @@ function vmc_render_location_page( array $cfg ): void {
                     'addressRegion'   => 'KY',
                     'addressCountry'  => 'US',
                 ],
-                'areaServed'       => $cfg['areas'],
+                'areaServed'       => array_column( $cfg['areas'], 'label' ),
                 'medicalSpecialty' => 'Veterinary medicine',
             ],
             [

@@ -3,121 +3,72 @@
  * Template Name: Vet Fort Thomas KY SEO Page
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-$keyword       = 'vet in Fort Thomas KY';
-$eyebrow       = get_field('loc_hero_eyebrow') ?: 'Vet in Fort Thomas, KY';
-$h1            = get_field('loc_hero_heading') ?: 'Vet in Fort Thomas KY with local ownership and consistent care';
-$hero_body     = get_field('loc_hero_body') ?: 'Veterinary Medical Center on Memorial Parkway offers women-led, locally owned veterinary care for Fort Thomas dogs and cats.';
-$primary_label = get_field('loc_primary_button') ?: 'Request Appointment';
-$secondary_lbl = get_field('loc_secondary_button') ?: 'Get Directions';
-$panel_heading = get_field('loc_panel_heading') ?: 'Fort Thomas care with clear next steps';
-$panel_body    = get_field('loc_panel_body') ?: 'Book online, call our team, or complete registration before your first visit.';
-$intro_heading = get_field('loc_intro_heading') ?: 'A Fort Thomas veterinary page built around real routines';
-$intro_body    = get_field('loc_intro_body') ?: 'Our Memorial Parkway location is practical for school drop-off routes, work commutes, and regular preventive care follow-through.';
-$quick_body    = get_field('loc_quick_body') ?: 'Families rely on this location for wellness visits, diagnostics, dentistry, and treatment planning with direct communication.';
-$resource_h    = get_field('loc_resource_heading') ?: 'Fort Thomas resources';
-$resource_b    = get_field('loc_resource_body') ?: 'Use these links for booking, registration, pharmacy access, and first-visit preparation.';
+require_once get_template_directory() . '/inc/render-location-page.php';
 
-$image         = get_field('loc_image') ?: get_template_directory_uri() . '/assets/images/about-fort-thomas.jpg';
-$image_alt     = get_field('loc_image_alt') ?: 'vet in Fort Thomas KY Veterinary Medical Center exterior on Memorial Parkway';
-$image_caption = get_field('loc_image_caption') ?: 'Veterinary Medical Center Fort Thomas near Highlands High School.';
-$team_image    = get_template_directory_uri() . '/assets/images/VMC Social Media.jpg';
-
-$address       = vmc_get('vmc_ft_address', '2000 Memorial Parkway, Fort Thomas, KY 41075');
-$phone         = vmc_get('vmc_ft_phone', '(859) 442-4420');
-$weekday_hours = vmc_get('vmc_ft_hours_weekday', '8:00 AM – 6:00 PM');
-$sat_hours     = vmc_get('vmc_ft_hours_saturday', 'Rotating — call ahead');
-$phone_href    = preg_replace('/[^0-9+]/', '', $phone);
-$map_embed     = 'https://www.google.com/maps?q=' . rawurlencode($address) . '&output=embed';
-$map_link      = 'https://maps.google.com/?q=' . rawurlencode($address);
-$seo_body      = get_field('loc_seo_body');
-?>
-
-<div class="lp-page">
-  <section class="lp-hero">
-    <div class="lp-hero-copy">
-      <div class="eyebrow"><span class="eyebrow-dash"></span><?php echo esc_html($eyebrow); ?></div>
-      <h1 class="hero-h1"><?php echo esc_html($h1); ?></h1>
-      <p class="hero-body"><?php echo esc_html($hero_body); ?></p>
-      <div class="lp-actions">
-        <button class="btn-red" onclick="openAptModal('fort-thomas-hero')"><?php echo esc_html($primary_label); ?></button>
-        <a class="btn-ghost" href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a>
-      </div>
-    </div>
-    <aside class="lp-hero-side">
-      <div class="lp-card">
-        <h2><?php echo esc_html($panel_heading); ?></h2>
-        <p><?php echo esc_html($panel_body); ?></p>
-        <ul class="lp-list">
-          <li><a href="tel:<?php echo esc_attr($phone_href); ?>"><?php echo esc_html($phone); ?></a></li>
-          <li><a href="<?php echo esc_url(vmc_patient_portal_page_url()); ?>">Patient Portal & Online Booking</a></li>
-          <li><a href="<?php echo esc_url(home_url('/new-patient-registration-form/')); ?>">New Patient Registration Form</a></li>
-        </ul>
-      </div>
-    </aside>
-  </section>
-
-  <section class="lp-section lp-section--white">
-    <div class="home-shell">
-      <div class="sec-eye"><span class="sec-lbl">Local Fort Thomas Care</span><span class="sec-rule"></span></div>
-      <h2 class="sec-h2"><?php echo esc_html($intro_heading); ?></h2>
-      <p class="lp-copy"><?php echo esc_html($intro_body); ?></p>
-      <div class="lp-grid-2">
-        <article class="lp-image-card"><img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="eager"><p><?php echo esc_html($image_caption); ?></p></article>
-        <article class="lp-card">
-          <h3><?php echo esc_html($keyword); ?> for long-term continuity</h3>
-          <p><?php echo esc_html($quick_body); ?></p>
-          <div class="lp-chips">
-            <span class="lp-chip">Fort Thomas</span><span class="lp-chip">Highland Heights</span><span class="lp-chip">Bellevue</span><span class="lp-chip">Newport</span><span class="lp-chip">Cold Spring</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="lp-section lp-section--warm" id="directions">
-    <div class="home-shell">
-      <div class="sec-eye"><span class="sec-lbl">Office & Map</span><span class="sec-rule"></span></div>
-      <h2 class="sec-h2">Visit our Fort Thomas office</h2>
-      <div class="lp-grid-2">
-        <article class="lp-map-card">
-          <iframe class="lp-map" src="<?php echo esc_url($map_embed); ?>" loading="lazy" title="Map to Veterinary Medical Center Fort Thomas"></iframe>
-          <div class="lp-map-body">
-            <h3><?php echo esc_html($address); ?></h3>
-            <p>Mon–Fri: <?php echo esc_html($weekday_hours); ?> · Saturday: <?php echo esc_html($sat_hours); ?></p>
-            <div class="lp-actions"><a class="btn-outline" target="_blank" rel="noopener" href="<?php echo esc_url($map_link); ?>"><?php echo esc_html($secondary_lbl); ?></a></div>
-          </div>
-        </article>
-        <article class="lp-card">
-          <h3><?php echo esc_html($resource_h); ?></h3>
-          <p><?php echo esc_html($resource_b); ?></p>
-          <ul class="lp-list">
-            <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Explore Services</a></li>
-            <li><a href="<?php echo esc_url(home_url('/online-vet-pharmacy-northern-kentucky-cincinnati/')); ?>">Online Vet Pharmacy</a></li>
-            <li><a href="https://fearfreepets.com/resources/directory/" target="_blank" rel="noopener">Fear Free Pet Owner Resources</a></li>
-          </ul>
-          <img src="<?php echo esc_url($team_image); ?>" alt="Vet in Fort Thomas KY Veterinary Medical Center team" style="width:100%;border-radius:8px;margin-top:16px;">
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="lp-section lp-section--white">
-    <div class="home-shell">
-      <article class="lp-card lp-card--seo">
-        <h2>Choosing a <?php echo esc_html($keyword); ?> for preventive and advanced care</h2>
-        <p>When families compare options for a <?php echo esc_html($keyword); ?>, they usually evaluate convenience, communication, and depth of services. We support all three. Our Fort Thomas team helps with annual care, diagnostics, dental consultations, and treatment follow-up while keeping recommendations understandable and practical.</p>
-        <p>Because this location is part of daily community routines, it is easier for many owners to stay consistent with wellness and recheck scheduling. That continuity can make a major difference for chronic conditions and senior pet care planning.</p>
-        <h3>Helpful next steps</h3>
-        <p>Complete your first-visit paperwork, book online through the patient portal, and use our online pharmacy for eligible refill support between visits.</p>
-        <?php if ($seo_body) : ?><div class="lp-wysiwyg"><?php echo wp_kses_post($seo_body); ?></div><?php endif; ?>
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-          <?php if (trim(wp_strip_all_tags(get_the_content()))) : ?><div class="lp-wysiwyg"><?php the_content(); ?></div><?php endif; ?>
-        <?php endwhile; endif; ?>
-      </article>
-    </div>
-  </section>
-</div>
-
-<?php get_footer(); ?>
+vmc_render_location_page([
+    'id'             => 'fort-thomas',
+    'keyword'        => 'vet in Fort Thomas, KY',
+    'eyebrow'        => 'Vet in Fort Thomas, KY',
+    'h1'             => 'Trusted vet in Fort Thomas, KY for convenient, full-service pet care.',
+    'intro'          => 'Looking for a veterinarian near Fort Thomas who offers consistent care and clear communication? Veterinary Medical Center provides locally owned, relationship-based care for dogs and cats near Memorial Parkway, Tower Park, and the neighborhoods around Highlands High School. From wellness visits and preventive plans to diagnostics, surgery, and urgent sick appointments, our team makes it easier to keep your pet healthy through every life stage.',
+    'hero_bullets'   => [
+        'Same-day sick visit appointments when available.',
+        'Experienced doctors and support team with Fear Free handling.',
+        'Full-service care in one clinic, from routine exams to diagnostics and surgery.',
+    ],
+    'panel_heading'  => 'Fort Thomas pet care with clear next steps.',
+    'panel_body'     => 'Call our clinic, request your appointment online, and complete registration before your first visit so check-in is easy.',
+    'phone'          => vmc_get('vmc_ft_phone', '(859) 442-4420'),
+    'address'        => vmc_get('vmc_ft_address', '2000 Memorial Parkway, Fort Thomas, KY 41075'),
+    'hours_weekday'  => vmc_get('vmc_ft_hours_weekday', '8:00 AM – 6:00 PM'),
+    'hours_saturday' => vmc_get('vmc_ft_hours_saturday', 'Rotating — call ahead'),
+    'image'          => get_template_directory_uri() . '/assets/images/about-fort-thomas.jpg',
+    'image_alt'      => 'Veterinary Medical Center Fort Thomas exterior near Memorial Parkway',
+    'image_caption'  => 'Locally owned veterinary care serving Fort Thomas families and nearby river cities.',
+    'second_image'   => get_template_directory_uri() . '/assets/images/VMC Social Media.jpg',
+    'second_alt'     => 'Veterinary Medical Center team serving Fort Thomas and nearby communities',
+    'trust'          => [
+        'Locally owned and women-led veterinary care, not a corporate chain.',
+        'Experienced vets and staff focused on continuity, education, and practical care plans.',
+        'Modern diagnostic tools and in-house treatment planning for faster answers.',
+        'Personalized recommendations based on your pet, your goals, and your household routine.',
+        'Strong community ties across Fort Thomas, Newport, Bellevue, and Cold Spring.',
+    ],
+    'services'       => [
+        [ 'title' => 'Wellness Exams', 'body' => 'Comprehensive wellness exams, vaccinations, parasite prevention, nutrition guidance, and senior pet planning.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Surgery', 'body' => 'Soft tissue surgery with thoughtful prep, anesthesia monitoring, pain control, and detailed discharge instructions.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Dental Care', 'body' => 'Dental assessments and treatment planning to support oral comfort, fresh breath, and long-term health.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Diagnostics', 'body' => 'Targeted diagnostics and medical workups to investigate symptoms and guide next-step treatment decisions.', 'url' => home_url('/services/') ],
+        [ 'title' => 'Urgent Care', 'body' => 'Same-day sick visit support for vomiting, itching, limping, appetite changes, and other non-life-threatening concerns.', 'url' => home_url('/contact/') ],
+    ],
+    'new_patient_steps' => [
+        [ 'title' => 'Request your visit', 'body' => 'Call or request an appointment online with your preferred day and time window.' ],
+        [ 'title' => 'Complete registration', 'body' => 'Submit the new patient form so our team can review your pet history before arrival.' ],
+        [ 'title' => 'Attend your first exam', 'body' => 'Meet your care team, review goals, and receive a customized wellness or treatment plan.' ],
+        [ 'title' => 'Follow your care plan', 'body' => 'Use our reminders and follow-up guidance for rechecks, refills, and preventive care timing.' ],
+    ],
+    'community_heading' => 'Areas we serve around Fort Thomas, KY.',
+    'community'      => [
+        'Our Fort Thomas clinic supports families across the river cities and nearby NKY neighborhoods, including pet owners commuting from downtown Cincinnati via I-471.',
+        'If you are searching for pet care in Fort Thomas, veterinarian near Fort Thomas, or dog and cat care close to Newport and Bellevue, VMC offers a practical local option with continuity.',
+    ],
+    'areas'          => [
+        [ 'label' => 'Fort Thomas', 'slug' => '/vet-fort-thomas-ky/' ],
+        [ 'label' => 'Highland Heights', 'slug' => '/vet-fort-thomas-ky/' ],
+        [ 'label' => 'Bellevue', 'slug' => '/vet-fort-thomas-ky/' ],
+        [ 'label' => 'Newport', 'slug' => '/vet-fort-thomas-ky/' ],
+        [ 'label' => 'Cold Spring', 'slug' => '/vet-fort-thomas-ky/' ],
+    ],
+    'location_heading' => 'Visit Veterinary Medical Center in Fort Thomas.',
+    'locality'       => 'Fort Thomas',
+    'schema_name'    => 'Veterinary Medical Center Fort Thomas',
+    'meta'           => 'Vet in Fort Thomas, KY offering full-service dog and cat care, same-day sick visits when available, and locally owned continuity-focused veterinary medicine.',
+    'faq'            => [
+        [ 'Do you offer same-day appointments in Fort Thomas?', 'Yes, we reserve scheduling space for sick pets whenever possible. Call early so our team can guide timing based on your pet’s symptoms.' ],
+        [ 'Is this an emergency veterinary hospital?', 'We provide urgent same-day care for many issues, but true emergencies may be referred to a 24/7 ER partner depending on severity and time of day.' ],
+        [ 'How transparent are prices for first visits?', 'Our team discusses exam fees, diagnostic recommendations, and treatment options before proceeding so you can make informed decisions.' ],
+        [ 'What should I bring to my first appointment?', 'Please bring prior records, current medications, your pet’s food or supplement list, and any concerns you want to discuss during the exam.' ],
+    ],
+]);
