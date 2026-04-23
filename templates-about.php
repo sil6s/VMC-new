@@ -1077,6 +1077,7 @@ endif;
       <p class="about-copy">
         <?php echo esc_html( get_field('about_links_body') ?: 'For many families, choosing an independently owned veterinary hospital in Northern Kentucky means choosing continuity, local accountability, and a team that can shape care around real pets instead of a distant corporate playbook.' ); ?>
       </p>
+      <p class="about-copy" style="margin-top:10px">Need online access? Use our <a href="<?php echo esc_url( vmc_patient_portal_page_url() ); ?>">patient portal and booking page</a> or the <a href="<?php echo esc_url( vmc_online_pharmacy_page_url() ); ?>">online pharmacy</a> for medication and refill support.</p>
 
       <div class="about-grid">
         <article class="about-link-card">

@@ -27,6 +27,13 @@ $service_cards = [
     [ 'Sick visits', 'Medical care for vomiting, skin issues, limping, coughing, appetite changes, behavior changes, and other concerns.' ],
 ];
 
+$shared_new_patient_steps = [
+    [ 'Request your visit', 'Choose Fort Thomas or Independence, share your main concern, and select a preferred time window for your first appointment.' ],
+    [ 'Complete registration', 'Use the online new patient form to submit records, vaccine history, medications, and key health notes before you arrive.' ],
+    [ 'Attend your first exam', 'Your veterinarian reviews history, performs a full exam, and explains recommendations with clear next-step options.' ],
+    [ 'Follow your care plan', 'Get a practical plan for treatments, prevention, and follow-up so care stays manageable for your schedule and budget.' ],
+];
+
 $location_pages = [
     'fort_thomas' => [
         'template'   => 'fort-thomas',
@@ -45,6 +52,12 @@ $location_pages = [
         'meta'       => 'Need a vet in Fort Thomas KY? Visit locally owned VMC on Memorial Parkway for trusted dog and cat care near Highlands High School.',
         'seo_title'  => 'Vet in Fort Thomas KY | 5 Trusted Reasons Local Families Choose VMC',
         'areas'      => [ 'Fort Thomas KY', 'Highland Heights KY', 'Bellevue KY', 'Newport KY', 'Dayton KY', 'Cold Spring KY', 'Southgate KY', 'Campbell County KY' ],
+        'area_links' => [
+            [ 'label' => 'Highland Heights', 'url' => '/vet-highland-heights-ky/' ],
+            [ 'label' => 'Bellevue', 'url' => '/vet-bellevue-ky/' ],
+            [ 'label' => 'Newport', 'url' => '/vet-newport-ky/' ],
+            [ 'label' => 'Cold Spring', 'url' => '/vet-cold-spring-ky/' ],
+        ],
         'trust'      => [
             'Locally owned and women-led by Dr. Kristi Baker',
             'Not corporate owned or managed from outside the community',
@@ -58,6 +71,14 @@ $location_pages = [
             'When you search for a vet in Fort Thomas KY, distance matters, but trust matters more. VMC gives local pet owners both: a convenient veterinary clinic in Northern Kentucky and a locally owned veterinary hospital that wants to know your pet over time.',
         ],
         'location_heading' => 'Visit Our Fort Thomas Location',
+        'new_patient_heading' => 'What to expect as a new patient in Fort Thomas.',
+        'new_patient_steps' => $shared_new_patient_steps,
+        'conversion_sections' => [
+            [ 'heading' => 'Choosing the right vet in Fort Thomas', 'body' => 'If you are comparing options, start with convenience, communication style, and long-term continuity. The best fit is a clinic that can support wellness visits now and medical decisions later without making every appointment feel rushed.' ],
+            [ 'heading' => 'Why local, independent care matters', 'body' => 'Independent ownership means decisions stay close to Fort Thomas families and pets. You get clearer accountability, a team that knows local routines, and care recommendations based on your pet instead of corporate quotas.' ],
+            [ 'heading' => 'Convenience for Fort Thomas pet owners', 'body' => 'Our Memorial Parkway location helps families stack vet care into existing school, work, and errand routes. That practical access makes preventive care easier to keep on schedule year-round.' ],
+            [ 'heading' => 'Simple next steps for new patients', 'body' => 'Use the registration form before your first visit, gather previous records, and request an appointment online. If your pet is uncomfortable today, call directly so our team can guide the fastest path to care.' ],
+        ],
         'faq' => [
             [ 'How do I choose a vet in Fort Thomas KY?', 'Choose a veterinary team that is easy to reach, locally accountable, clear in communication, and able to support your pet through wellness, medical care, dental care, surgery, and senior life.' ],
             [ 'Where is VMC Fort Thomas located?', 'Veterinary Medical Center Fort Thomas is located at 2000 Memorial Parkway, Fort Thomas, KY 41075, near Highlands High School and across from the Northern Kentucky Water District.' ],
@@ -84,6 +105,12 @@ $location_pages = [
         'meta'       => 'Need a vet in Independence KY? Visit locally owned VMC on Madison Pike for full-service dog and cat care in Northern Kentucky.',
         'seo_title'  => 'Vet in Independence KY | Trusted Local Care Without the Corporate Feel',
         'areas'      => [ 'Independence KY', 'Covington KY', 'Taylor Mill KY', 'Latonia KY', 'Erlanger KY', 'Florence KY', 'Edgewood KY', 'Kenton County KY' ],
+        'area_links' => [
+            [ 'label' => 'Covington', 'url' => '/vet-covington-ky/' ],
+            [ 'label' => 'Taylor Mill', 'url' => '/vet-taylor-mill-ky/' ],
+            [ 'label' => 'Erlanger', 'url' => '/vet-erlanger-ky/' ],
+            [ 'label' => 'Florence', 'url' => '/vet-florence-ky/' ],
+        ],
         'trust'      => [
             'Locally owned and women-led veterinary hospital',
             'Not corporate owned or built around rushed visits',
@@ -97,6 +124,14 @@ $location_pages = [
             'This location has its own local story because Independence deserves more than copied neighborhood copy. VMC Independence reflects the same independently owned, women-led values as the broader practice, but the page is written for families who need accessible veterinary care in central Northern Kentucky.',
         ],
         'location_heading' => 'Visit Our Independence Location',
+        'new_patient_heading' => 'What to expect as a new patient in Independence.',
+        'new_patient_steps' => $shared_new_patient_steps,
+        'conversion_sections' => [
+            [ 'heading' => 'Choosing the right vet in Independence', 'body' => 'Look for a veterinary team that explains options clearly, makes follow-up simple, and stays accessible for both routine and urgent concerns. Good fit matters more than flashy marketing when your pet needs consistent care.' ],
+            [ 'heading' => 'Why local, independent care matters', 'body' => 'Local ownership gives your family direct access to a team accountable to Northern Kentucky communities. Care plans stay relationship-based and practical rather than standardized around corporate scripts.' ],
+            [ 'heading' => 'Convenience for Independence pet owners', 'body' => 'Madison Pike access helps families across central NKY reach appointments without unnecessary detours. That convenience makes it easier to keep wellness, dental, and medication follow-up on track.' ],
+            [ 'heading' => 'Simple next steps for new patients', 'body' => 'Start with online registration, request your first appointment, and upload any prior records you have available. If your pet is currently uncomfortable, call us so we can advise on same-day options.' ],
+        ],
         'faq' => [
             [ 'How do I choose a vet in Independence KY?', 'Look for a veterinary clinic that is nearby, locally accountable, clear about recommendations, and able to support wellness, dental care, surgery, diagnostics, and sick visits.' ],
             [ 'Where is VMC Independence located?', 'Veterinary Medical Center Independence is located at 4147 Madison Pike, Independence, KY 41051.' ],
@@ -123,6 +158,12 @@ $location_pages = [
         'meta'       => 'Need a vet near Cincinnati? VMC Fort Thomas is about 10 minutes from downtown via I-471 with easy access and local care.',
         'seo_title'  => 'Vet Near Cincinnati | 7 Smart Reasons Pet Owners Choose VMC in NKY',
         'areas'      => [ 'Downtown Cincinnati OH', 'Mount Adams OH', 'Over-the-Rhine OH', 'Newport KY', 'Bellevue KY', 'Fort Thomas KY', 'Highland Heights KY', 'Northern Kentucky' ],
+        'area_links' => [
+            [ 'label' => 'Downtown Cincinnati', 'url' => '/vet-near-downtown-cincinnati/' ],
+            [ 'label' => 'Mount Adams', 'url' => '/vet-near-mount-adams-cincinnati/' ],
+            [ 'label' => 'Over-the-Rhine', 'url' => '/vet-near-otr-cincinnati/' ],
+            [ 'label' => 'Newport', 'url' => '/vet-newport-ky/' ],
+        ],
         'trust'      => [
             'About 10 minutes from downtown Cincinnati for many drivers',
             'Right off I-471 with easier access than many downtown clinics',
@@ -136,6 +177,14 @@ $location_pages = [
             'VMC Fort Thomas is a strong nearby alternative for Cincinnati pet owners who want a local vet near Cincinnati, a women-led animal hospital, and full-service veterinary care in Northern Kentucky without giving up convenience.',
         ],
         'location_heading' => 'Visit Our Cincinnati-Close Fort Thomas Location',
+        'new_patient_heading' => 'What to expect as a new patient near Cincinnati.',
+        'new_patient_steps' => $shared_new_patient_steps,
+        'conversion_sections' => [
+            [ 'heading' => 'Choosing the right vet near Cincinnati', 'body' => 'A nearby clinic should reduce friction, not add it. Many Cincinnati pet owners prefer quick I-471 access, easy parking, and a team that explains options without downtown time pressure.' ],
+            [ 'heading' => 'Why local, independent care matters', 'body' => 'Independent ownership keeps care recommendations centered on pets and families, not volume targets. You get continuity with a women-led team that builds relationships over time.' ],
+            [ 'heading' => 'Convenience for Cincinnati pet owners', 'body' => 'Fort Thomas gives many downtown and riverfront families a shorter, lower-stress route for routine care. That convenience is especially helpful for anxious pets, senior pets, and busy weekday schedules.' ],
+            [ 'heading' => 'Simple next steps for new patients', 'body' => 'Complete registration online, request a visit window, and share prior records so your first exam can focus on decisions instead of paperwork. Call directly for urgent symptoms or time-sensitive questions.' ],
+        ],
         'faq' => [
             [ 'How close is VMC Fort Thomas to downtown Cincinnati?', 'For many drivers, VMC Fort Thomas is about 10 minutes from downtown Cincinnati via I-471, depending on traffic and starting point.' ],
             [ 'Why choose a vet near Cincinnati instead of a downtown clinic?', 'Many pet owners choose VMC Fort Thomas because it is close to Cincinnati while avoiding downtown street parking, tight urban routes, and extra appointment friction.' ],
@@ -167,10 +216,10 @@ get_header();
 .loc-sec-white{background:var(--white)}
 .loc-sec-cream{background:var(--cream)}
 .loc-sec-warm{background:var(--warm)}
-.loc-wrap{width:100%}
+.loc-wrap{width:100%;max-width:1280px;margin:0 auto}
 .loc-copy{max-width:860px;margin-top:14px;font-size:15.5px;line-height:1.86;color:var(--mid)}
 .loc-card,.loc-panel,.loc-image-card,.loc-faq-card,.loc-map-card,.loc-service-card,.loc-cta-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:8px;box-shadow:0 20px 56px rgba(0,0,0,.06)}
-.loc-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);background:var(--cream);min-height:690px}
+.loc-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);background:var(--cream)}
 .loc-hero-copy{padding:118px 64px 82px 68px;display:flex;flex-direction:column;justify-content:center}
 .loc-hero .hero-h1{max-width:14ch;font-size:clamp(42px,5.5vw,68px)}
 .loc-hero .hero-body{max-width:680px}
@@ -203,8 +252,15 @@ get_header();
 .loc-faq-card{padding:0;overflow:hidden}
 .loc-faq-card summary{cursor:pointer;padding:24px 28px;font-size:23px;line-height:1.14}
 .loc-faq-card p{padding:0 28px 24px;margin:0}
+.loc-step-card{padding:24px}
+.loc-step-card .num{display:inline-flex;width:30px;height:30px;border-radius:999px;background:var(--red);color:#fff;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+.loc-step-card h3{font-size:24px;line-height:1.12;margin-bottom:10px}
+.loc-highlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:26px}
+.loc-highlight-card{padding:22px;background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:8px}
+.loc-highlight-card h3{font-size:21px;line-height:1.2;margin-bottom:8px;font-family:'Playfair Display',serif;color:var(--dark)}
+.loc-highlight-card p{font-size:14.5px;line-height:1.78;color:var(--mid)}
 @media(max-width:1100px){
-  .loc-hero,.loc-grid-2,.loc-grid-3{grid-template-columns:1fr}
+  .loc-hero,.loc-grid-2,.loc-grid-3,.loc-highlight-grid{grid-template-columns:1fr}
   .loc-hero{min-height:0;padding-top:70px}
   .loc-hero-copy{padding:56px 24px 34px}
   .loc-hero-side{padding:0 24px 56px}
@@ -255,8 +311,8 @@ get_header();
   <section class="loc-sec loc-sec-white" style="padding-top:0">
     <div class="loc-wrap rv">
       <div class="sec-eye"><span class="sec-lbl">Why Choose Us</span><span class="sec-rule"></span></div>
-      <h2 class="sec-h2"><?php echo esc_html( $page['keyword'] ); ?> care with local ownership and real continuity.</h2>
-      <p class="loc-copy">Veterinary Medical Center is locally owned, women-led, and relationship-based. Families choose VMC because they want a dog and cat veterinarian who communicates clearly, supports long-term pet health, and stays accountable to the community instead of a corporate office.</p>
+      <h2 class="sec-h2"><?php echo esc_html( $page['keyword'] ); ?> care with continuity and practical guidance.</h2>
+      <p class="loc-copy">Veterinary Medical Center helps families who want clear communication, thoughtful treatment planning, and a team that follows through. Our goal is steady care from first visits through senior support, with recommendations that make sense for real households.</p>
       <div class="loc-grid-2">
         <article class="loc-image-card">
           <img src="<?php echo esc_url( get_field( 'loc_image' ) ?: $page['image'] ); ?>" alt="<?php echo esc_attr( get_field( 'loc_image_alt' ) ?: $page['image_alt'] ); ?>" loading="eager">
@@ -267,6 +323,10 @@ get_header();
           <ul class="loc-list"><?php foreach ( $page['trust'] as $item ) : ?><li><?php echo esc_html( $item ); ?></li><?php endforeach; ?></ul>
           <p>Learn more <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">about VMC</a>, compare our <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">veterinary services</a>, or review the <a href="<?php echo esc_url( home_url( '/first-vet-visit-northern-kentucky/' ) ); ?>">first visit guide</a>.</p>
         </article>
+      </div>
+      <div class="loc-actions">
+        <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-why')">Book Online</button>
+        <a class="btn-ghost" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">Learn About VMC</a>
       </div>
     </div>
   </section>
@@ -293,6 +353,26 @@ get_header();
 
   <section class="loc-sec loc-sec-white">
     <div class="loc-wrap rv">
+      <div class="sec-eye"><span class="sec-lbl">New Patients</span><span class="sec-rule"></span></div>
+      <h2 class="sec-h2"><?php echo esc_html( $page['new_patient_heading'] ); ?></h2>
+      <div class="loc-grid-2">
+        <?php foreach ( $page['new_patient_steps'] as $index => $step ) : ?>
+          <article class="loc-card loc-step-card">
+            <span class="num"><?php echo esc_html( $index + 1 ); ?></span>
+            <h3><?php echo esc_html( $step[0] ); ?></h3>
+            <p><?php echo esc_html( $step[1] ); ?></p>
+          </article>
+        <?php endforeach; ?>
+      </div>
+      <div class="loc-actions">
+        <a class="btn-red" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Get Started as a New Patient</a>
+        <a class="btn-ghost" href="tel:<?php echo esc_attr( $page['phone_href'] ); ?>">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-sec loc-sec-white">
+    <div class="loc-wrap rv">
       <div class="loc-grid-2">
         <article class="loc-card">
           <div class="sec-eye"><span class="sec-lbl">Local Credibility</span><span class="sec-rule"></span></div>
@@ -305,6 +385,21 @@ get_header();
           <div class="loc-image-caption">Women-led, locally owned veterinary care for families searching <?php echo esc_html( $page['keyword'] ); ?>.</div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="loc-sec loc-sec-warm">
+    <div class="loc-wrap rv">
+      <div class="sec-eye"><span class="sec-lbl">Areas We Serve</span><span class="sec-rule"></span></div>
+      <h2 class="sec-h2">Areas we serve around <?php echo esc_html( $map_location_label ); ?>.</h2>
+      <p class="loc-copy">We care for pets across nearby neighborhoods and surrounding communities, not only one zip code. If you are searching for a <?php echo esc_html( $page['keyword'] ); ?> option with practical access, review nearby service areas and choose the location that best fits your routine.</p>
+      <?php if ( ! empty( $page['area_links'] ) ) : ?>
+        <div class="loc-actions">
+          <?php foreach ( $page['area_links'] as $nearby ) : ?>
+            <a class="btn-ghost" href="<?php echo esc_url( home_url( $nearby['url'] ) ); ?>">Vet in <?php echo esc_html( $nearby['label'] ); ?></a>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -360,8 +455,15 @@ get_header();
   <section class="loc-sec loc-sec-warm">
     <div class="loc-wrap rv">
       <article class="loc-cta-card">
-        <h2>Choose local veterinary care that makes the next step clear.</h2>
-        <p><?php echo esc_html( $page['keyword'] ); ?> searches should end with a veterinary team that is nearby, trustworthy, and easy to contact. VMC gives families full-service care, clear communication, local ownership, and a practical path to the first appointment.</p>
+        <h2>Simple next steps for pet families in <?php echo esc_html( $map_location_label ); ?>.</h2>
+        <div class="loc-highlight-grid">
+          <?php foreach ( $page['conversion_sections'] as $section ) : ?>
+            <article class="loc-highlight-card">
+              <h3><?php echo esc_html( $section['heading'] ); ?></h3>
+              <p><?php echo esc_html( $section['body'] ); ?></p>
+            </article>
+          <?php endforeach; ?>
+        </div>
         <?php if ( get_field( 'loc_seo_body' ) ) : ?>
           <div class="loc-copy"><?php echo wp_kses_post( get_field( 'loc_seo_body' ) ); ?></div>
         <?php endif; ?>
@@ -371,8 +473,9 @@ get_header();
           <?php endif; ?>
         <?php endwhile; endif; ?>
         <div class="loc-actions">
-          <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-final')"><?php echo esc_html( $primary_cta ); ?></button>
-          <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration</a>
+          <button class="btn-red" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-final')">Request Appointment</button>
+          <button class="btn-ghost" onclick="openAptModal('location-<?php echo esc_attr( $page['template'] ); ?>-final-book')">Book Online</button>
+          <a class="btn-outline" href="tel:<?php echo esc_attr( $page['phone_href'] ); ?>">Call Now</a>
         </div>
       </article>
     </div>

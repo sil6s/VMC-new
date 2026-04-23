@@ -199,6 +199,21 @@ if ( empty($ticker_items) || ! is_array($ticker_items) ) {
   </div>
 </div>
 
+<!-- ═══ Utility Access Links (indexing support) ═══ -->
+<div class="home-band home-band--cream">
+  <section class="sec" style="padding-top:0">
+    <div class="rv">
+      <div class="sec-eye"><span class="sec-lbl">Online Tools</span><span class="sec-rule"></span></div>
+      <h2 class="sec-h2">Manage records, booking, and refills online.</h2>
+      <p style="max-width:760px;margin-top:14px;font-size:15.5px;line-height:1.8;color:var(--mid)">Use our online utility pages for secure portal access, online vet booking, and medication refills tied to your local VMC team.</p>
+      <div class="hero-btns" style="margin-top:22px">
+        <a class="btn-red" href="<?php echo esc_url( vmc_patient_portal_page_url() ); ?>">Patient Portal &amp; Online Booking</a>
+        <a class="btn-ghost" href="<?php echo esc_url( vmc_online_pharmacy_page_url() ); ?>">Online Vet Pharmacy</a>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- ═══ 11. FAQ — Always last content section ═══ -->
 <div class="home-band home-band--cream">
   <div class="home-shell">
