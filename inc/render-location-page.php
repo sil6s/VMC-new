@@ -135,6 +135,11 @@ function vmc_render_location_page( array $cfg ): void {
                 </div>
               </article>
             </div>
+            <div class="lp-actions" style="margin-top:24px">
+              <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-why')">Request Appointment</button>
+              <a class="btn-ghost" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Call Now</a>
+              <a class="btn-outline" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Get Started as a New Patient</a>
+            </div>
           </div>
         </div>
       </section>
@@ -227,6 +232,10 @@ function vmc_render_location_page( array $cfg ): void {
                 </details>
               <?php endforeach; ?>
             </div>
+            <div class="lp-actions" style="margin-top:24px">
+              <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-faq')">Book Online</button>
+              <a class="btn-outline" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Call Now</a>
+            </div>
           </div>
         </div>
       </section>
@@ -236,19 +245,45 @@ function vmc_render_location_page( array $cfg ): void {
           <div class="rv">
             <article class="lp-cta-card rv">
               <div class="sec-eye"><span class="sec-lbl">Get Started</span><span class="sec-rule"></span></div>
-              <h2>Choose local veterinary care that keeps pet care simple.</h2>
-              <p><?php echo esc_html( $keyword ); ?> searches should end with a veterinary team that is nearby, trustworthy, and easy to contact. VMC gives families full-service care, clear communication, local ownership, and a direct path to the first appointment.</p>
+              <h2>Simple next steps for pet families in <?php echo esc_html( $locality ); ?>.</h2>
+              <div class="lp-grid-2" style="margin-top:20px">
+                <article class="lp-card rv rv2">
+                  <h3>Choosing the right vet in <?php echo esc_html( $locality ); ?></h3>
+                  <p>Look for a team that explains findings clearly, offers preventive care and medical follow-up, and keeps communication consistent from one visit to the next.</p>
+                  <p>That consistency helps you make better decisions for routine care, urgent concerns, and long-term health planning.</p>
+                </article>
+                <article class="lp-card rv rv2">
+                  <h3>Why local, independent care matters</h3>
+                  <p>Independent clinics can stay flexible around real families and real pets, instead of forcing one-size-fits-all care paths.</p>
+                  <ul class="lp-list">
+                    <li>Clear treatment options and practical next steps.</li>
+                    <li>Continuity with a team that knows your pet over time.</li>
+                    <li>Direct access to your clinic when questions come up.</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="lp-grid-2" style="margin-top:18px">
+                <article class="lp-card rv rv2">
+                  <h3>Convenience for <?php echo esc_html( $locality ); ?> pet owners</h3>
+                  <p>Use online booking, submit new patient information before arrival, and keep follow-up simple through one connected team.</p>
+                  <p>Need guidance? Our clinic staff can help you choose the right appointment type and timing.</p>
+                </article>
+                <article class="lp-card rv rv2">
+                  <h3>Simple next steps for new patients</h3>
+                  <ul class="lp-list">
+                    <li>Request your appointment online or by phone.</li>
+                    <li>Complete new patient registration before your visit.</li>
+                    <li>Bring records and questions so your first exam is productive.</li>
+                  </ul>
+                </article>
+              </div>
               <?php if ( get_field( 'loc_seo_body' ) ) : ?>
-                <div class="lp-copy" style="margin-top:20px"><?php echo wp_kses_post( get_field( 'loc_seo_body' ) ); ?></div>
+                <div class="lp-copy" style="margin-top:18px"><?php echo wp_kses_post( get_field( 'loc_seo_body' ) ); ?></div>
               <?php endif; ?>
-              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                <?php if ( trim( wp_strip_all_tags( get_the_content() ) ) ) : ?>
-                  <div class="lp-copy" style="margin-top:20px"><?php the_content(); ?></div>
-                <?php endif; ?>
-              <?php endwhile; endif; ?>
               <div class="lp-actions" style="margin-top:28px">
                 <button class="btn-red" onclick="openAptModal('lp-<?php echo esc_attr( $id ); ?>-cta')">Request Appointment</button>
-                <a class="btn-ghost" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">New Patient Registration <?php echo $arrow_svg; ?></a>
+                <a class="btn-ghost" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Call Now</a>
+                <a class="btn-outline" href="<?php echo esc_url( home_url( '/new-patient-registration-form/' ) ); ?>">Book Online <?php echo $arrow_svg; ?></a>
               </div>
             </article>
           </div>

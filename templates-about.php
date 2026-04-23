@@ -1086,6 +1086,8 @@ endif;
             <li><a href="<?php echo esc_url( home_url('/northern-kentucky-vet-near-me/') ); ?>">Vet near me in Northern Kentucky</a></li>
             <li><a href="<?php echo esc_url( home_url('/first-vet-visit-northern-kentucky/') ); ?>">First vet visit and new patient guide</a></li>
             <li><a href="<?php echo esc_url( home_url('/services/') ); ?>">Veterinary services in Northern Kentucky</a></li>
+            <li><a href="<?php echo esc_url( vmc_patient_portal_page_url() ); ?>">Patient portal and online booking</a></li>
+            <li><a href="<?php echo esc_url( vmc_online_pharmacy_page_url() ); ?>">Online vet pharmacy and refill access</a></li>
             <li><a href="<?php echo esc_url( home_url('/veterinary-medical-center-contact/') ); ?>">Contact Fort Thomas or Independence</a></li>
           </ul>
         </article>
