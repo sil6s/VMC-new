@@ -15,6 +15,8 @@ $fallback_items = [
     [ 'ili_label' => 'Behavior',            'ili_url' => '/service-item/pet-behavior-consultations-northern-kentucky/', 'ili_desc' => 'Anxiety, aggression, and behavior support' ],
     [ 'ili_label' => 'Cat-Friendly Visits', 'ili_url' => '/service-item/cat-friendly-vet-northern-kentucky/', 'ili_desc' => 'Cat-only appointment windows available' ],
     [ 'ili_label' => 'New Patients',        'ili_url' => '/new-patients/',                                              'ili_desc' => 'First visit info and registration forms' ],
+    [ 'ili_label' => 'Patient Portal',      'ili_url' => '/patient-portal-online-booking/',                             'ili_desc' => 'Secure portal login and online booking' ],
+    [ 'ili_label' => 'Online Pharmacy',     'ili_url' => '/online-vet-pharmacy-northern-kentucky-cincinnati/',          'ili_desc' => 'Request medications and refill support' ],
     [ 'ili_label' => 'Contact Us',          'ili_url' => '/contact/',                                                   'ili_desc' => 'Get in touch or find our locations' ],
 ];
 

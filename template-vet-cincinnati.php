@@ -12,7 +12,7 @@ vmc_render_location_page([
     'keyword'        => 'vet near Cincinnati',
     'eyebrow'        => 'Vet Near Cincinnati',
     'h1'             => 'A trusted veterinarian near Cincinnati with easy Fort Thomas access.',
-    'intro'          => 'Veterinary Medical Center Fort Thomas is a practical choice for Cincinnati pet owners who want excellent care without downtown parking stress. Just across the river via I-471, our locally owned clinic provides full-service dog and cat care with the consistency families need for preventive medicine, diagnostics, surgery, dental treatment planning, and urgent sick visits when available. If you are searching for a veterinarian near Cincinnati who combines convenience with long-term relationships, VMC is ready to help.',
+    'intro'          => 'Veterinary Medical Center Fort Thomas is a practical option for pet owners looking for a vet near Cincinnati without downtown parking stress. Just across the river via I-471, our clinic provides full-service dog and cat care, including prevention, diagnostics, dental treatment planning, surgery, and urgent sick visits when available. If you want convenience plus long-term continuity, VMC is ready to help.',
     'hero_bullets'   => [
         'Convenient across-the-river location minutes from downtown Cincinnati.',
         'Experienced veterinary team focused on clear communication and continuity.',
@@ -30,7 +30,7 @@ vmc_render_location_page([
     'second_image'   => get_template_directory_uri() . '/assets/images/VMC Social Media.jpg',
     'second_alt'     => 'Veterinary Medical Center team caring for Cincinnati and Northern Kentucky pets',
     'trust'          => [
-        'Independent, locally owned veterinary care guided by community values.',
+        'Independent veterinary care guided by community values.',
         'Experienced doctors and support team delivering continuity visit after visit.',
         'Modern diagnostic approach for clearer answers and faster treatment planning.',
         'Personalized care for anxious pets, cats, and chronic condition management.',
@@ -51,13 +51,13 @@ vmc_render_location_page([
     ],
     'community_heading' => 'Areas we serve for pet owners near Cincinnati.',
     'community'      => [
-        'Many households from downtown Cincinnati, Mount Adams, Hyde Park, and nearby riverfront neighborhoods choose our Fort Thomas clinic for easier access and reliable continuity.',
-        'If you are comparing vets near Cincinnati, VMC offers local pet care with practical travel routes, full-service medicine, and personalized support.',
+        'Many households from downtown Cincinnati, Mount Adams, Hyde Park, and nearby riverfront neighborhoods choose our Fort Thomas clinic for easy access and dependable follow-up.',
+        'If you are comparing options for a vet near Cincinnati, this location gives you full-service medicine with straightforward travel routes and one connected care team.',
     ],
     'areas'          => [
-        [ 'label' => 'Downtown Cincinnati', 'slug' => '/vet-near-cincinnati/' ],
-        [ 'label' => 'Mount Adams', 'slug' => '/vet-near-cincinnati/' ],
-        [ 'label' => 'Hyde Park', 'slug' => '/vet-near-cincinnati/' ],
+        [ 'label' => 'Downtown Cincinnati', 'slug' => '/vet-near-me/' ],
+        [ 'label' => 'Mount Adams', 'slug' => '/vet-near-me/' ],
+        [ 'label' => 'Hyde Park', 'slug' => '/vet-near-me/' ],
         [ 'label' => 'Newport', 'slug' => '/vet-fort-thomas-ky/' ],
         [ 'label' => 'Bellevue', 'slug' => '/vet-fort-thomas-ky/' ],
     ],
@@ -66,9 +66,11 @@ vmc_render_location_page([
     'schema_name'    => 'Veterinary Medical Center Near Cincinnati',
     'meta'           => 'Vet near Cincinnati with full-service pet care, easy Fort Thomas access, and locally owned continuity-focused veterinary support.',
     'faq'            => [
-        [ 'How far is your clinic from downtown Cincinnati?', 'Our Fort Thomas location is minutes from downtown via I-471, making routine exams and follow-up visits easier for many city households.' ],
-        [ 'Can I book online if I live in Cincinnati?', 'Yes. Cincinnati-area families can request appointments online and complete new patient registration before the first visit.' ],
-        [ 'Do you handle emergencies?', 'We treat many urgent cases during open hours, but true life-threatening emergencies may require immediate referral to a 24/7 emergency hospital.' ],
-        [ 'Do you provide cost clarity before treatment?', 'Yes. We discuss recommendations, options, and estimated pricing so you can make informed decisions about your pet’s care.' ],
+        [ 'How far is your clinic for families searching a vet near Cincinnati?', 'Our Fort Thomas location is only minutes from downtown Cincinnati via I-471 for many drivers. That access makes routine exams and recheck visits easier to keep on schedule.' ],
+        [ 'Can Cincinnati pet owners book online?', 'Yes. Cincinnati-area families can request appointments online and complete new patient registration before the first visit. This helps reduce check-in time and keeps the first exam focused on your pet.' ],
+        [ 'Do I need to call for urgent concerns?', 'For urgent symptoms, call the clinic directly so our team can guide timing immediately. We treat many urgent cases during open hours and refer life-threatening emergencies to 24/7 ER partners when needed.' ],
+        [ 'Do you offer full-service care if I cross the river for appointments?', 'Yes. Families using our clinic as their vet near Cincinnati can access wellness care, diagnostics, surgery planning, dental care, and medication support through one team.' ],
+        [ 'Can I request medication refills online?', 'Yes, refill requests can be submitted through our online pharmacy, and approvals are reviewed by your veterinary team. You can also call us for support with timing, dosage, or alternatives.' ],
+        [ 'Will I receive estimate information before treatment?', 'Yes. We review recommendations, options, and expected pricing before services are performed so you can make confident care decisions.' ],
     ],
 ]);
